@@ -1,0 +1,56 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="shortcut icon", href="images/icons/favicon.png", type="image/x-icon")
+    title NuelJay
+
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Acme&family=Laila:wght@300;400;500;600;700&display=swap" rel="stylesheet")
+
+    link(rel="stylesheet", href="style.css")
+
+  body 
+    header 
+      .head-logo 
+        img(src="images/icons/black-logo.webp", alt="Logo" width="100")
+
+      nav 
+        ul 
+          li.js
+            a(href="index.html")
+              svg(icon="smart-home")
+              span Home 
+          li 
+            a
+              svg(icon="user-scan")
+              span About 
+          li
+            a(href="services.html")
+              svg(icon="camera-selfie")
+              span Services
+          li
+            a(href="gallery.html")
+              svg(icon="brand-google-photos")
+              span Gallery
+
+      .book-dark 
+        button.book-a-session 
+          span Book a session 
+          svg(icon="camera")
+    .container 
+
+      include profile.pug
+      block sections
+      include hire_me.pug
+
+
+    footer 
+      span NuelJay 2024, Design by Joe Legen.
+
+
+  script( type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js")
+  block scripts
+  script(src="javascript/script.js")

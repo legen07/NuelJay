@@ -1,0 +1,40 @@
+@media screen and (max-width: 800px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    // hei
+  }
+  
+  .recent-shots{
+    height: var(--kwasiampanin);
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .recent-shots{
+    // width: var(--)
+
+    .left-unactive {
+      transform: translateY(-8rem) scale(70%);
+      perspective: 600px;
+  
+      img {
+        transform: rotateX(-20deg);
+      }
+    }
+
+    .right-unactive {
+      transform: translateY(8rem) scale(70%);
+      perspective: 600px;
+  
+      img {
+        transform: rotateX(20deg);
+      }
+    }
+
+    .car-assets{
+      height: 70%;
+    }
+  }
+}

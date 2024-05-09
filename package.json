@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "gulp": "^5.0.0",
+    "gulp-cli": "^3.0.0",
+    "gulp-pug": "^5.0.0",
+    "gulp-sass": "^5.1.0",
+    "pug": "^3.0.2",
+    "sass": "^1.75.0",
+    "scss": "^0.2.4"
+  },
+  "name": "nueljay",
+  "version": "1.0.0",
+  "description": "Nueljay Photography is a company which captures timeless moments that tell stories through the lens while curating a unique fusion of art and fashion.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "gulp watch"
+  },
+  "author": "Joe Legen",
+  "license": "MIT"
+}

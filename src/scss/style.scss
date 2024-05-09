@@ -1,0 +1,327 @@
+@import "__variables.scss";
+@import "__global.scss";
+@import "__pages.scss";
+
+body {
+  background-color: #{$turquoise}11;
+  overflow-x: hidden;
+  position: relative;
+  background: linear-gradient(45deg, #{$blue}33, #{$turquoise}33);
+
+  &::before{
+    content: '';
+    position: absolute;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+    inset: 15%;
+    background: linear-gradient(45deg, #{$blue}66 10%, #{$turquoise}11 10%, #{$turquoise}11 60%, #{$turquoise}69 50%);
+    filter: blur(40px);
+    background-size: 100%;
+    animation: body-back 17s ease-in-out infinite alternate;
+  }
+  
+  &::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
+    z-index: -1;
+    background-image:  url(images/stock/distress-sand-overlay.png);
+    background-repeat: repeat;
+    background-size: 40%;
+    animation: body-sand 36s ease-in-out infinite alternate;
+    filter: blur(1px);
+    // left: 50%;
+    opacity: .08;
+  }
+  // height: 100vh;
+}
+@keyframes body-sand {
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes body-back {
+  from  {
+    background-size: -300%;
+    transform: rotate(-20deg) scale(80%) translate(-4rem);
+  }
+  to{
+    background-size: 300%;
+    transform: rotate(120deg) scale(120%);
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  // grid-template-rows: 1fr;
+  // flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  padding: var(--pad-medium);
+  // padding: 5rem;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 100%;  
+  position: relative;
+  max-width: 1400px;
+  // min-width: 100dvh;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 1.7rem;
+}
+
+svg {
+  background-color: #6664;
+  border-radius: var(--rad-small);
+  animation: svg-pulse-load 400ms ease-in-out infinite alternate;
+  max-width: 2.3rem;
+  max-height: 2.3rem;
+}
+
+svg[width] {
+  background-color: unset;
+  animation: none;
+  max-width: unset;
+  max-height: unset;
+}
+
+@keyframes svg-pulse-load {
+  to {
+    background-color: #5552;
+  }
+}
+
+header {
+  flex-grow: 100;
+  flex-shrink: 0;
+  margin-top: 1rem;
+  grid-column: span 3;
+  display: flex;
+  box-sizing: content-box;
+  width: 90%;
+  height: 4rem;
+  position: relative;
+  max-width: 1400px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f8f8f8;
+  box-shadow: 0 1px 3px #4445;
+  border-radius: var(--rad-medium);
+  padding: calc(var(--pad-small) * 0.5) var(--pad-small);
+  justify-content: space-between;
+  align-items: start;
+  transition: all 250ms ease-in-out;
+
+  > li{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.js {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    row-gap: 2rem; 
+    justify-content: space-between;
+
+    > li {
+      display: none;
+    }
+
+    nav{
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      opacity: 0;
+      position: relative;
+      top: 10%;
+      transform: scale(100%, 50%) translateY(-3rem);
+      width: 60%;
+      animation: nav-slide-in 200ms ease-in-out 200ms forwards;
+
+      ul{
+        display: grid;
+      }
+
+      li {
+        flex-direction: row-reverse;
+        justify-content: space-evenly;
+      }
+    }
+  }
+
+  @keyframes nav-slide-in {
+    to{
+      opacity: 1;
+      transform: unset;
+    }
+  }
+
+  svg {
+    color: #999;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .head-logo {
+    height: 100%;
+    align-self: center;
+
+    img {
+      height: 3.4rem;
+      display: grid;
+    }
+  }
+
+  nav {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    
+      ul {
+      display: flex;
+      gap: 2rem;
+    }
+
+    &.js{
+      display: none;
+    }
+  }
+
+  li, a {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-weight: 600;
+    transition: all 140ms ease-in-out 100ms;
+
+    cursor: pointer;
+
+    span {
+      color: #888;
+    }
+
+    &.js,
+    &:hover {
+      background-color: #a0a8b0;
+      padding: calc(var(--pad-small) * 0.3) var(--pad-small);
+      border-radius: var(--rad-small);
+      gap: 1rem;
+
+      * {
+        color: #fff;
+      }
+
+      svg {
+        transform: scale(90%);
+      }
+      span {
+        font-size: 120%;
+      }
+    }
+
+    &:hover {
+      background-color: #e0e3ea;
+
+      * {
+        color: #888;
+      }
+    }
+  }
+
+  .book-dark.js{
+    display: flex;
+    justify-content: end;
+
+    .book-a-session{
+      display: flex;
+    }
+    .hamburger{
+      background-color: #0000;
+      box-shadow: none;
+
+      * {color: #333}
+    }
+  }
+
+  .book-a-session.js{
+    display: none;
+  }
+
+  button {
+    box-shadow: 0 1px 2px #4444;
+    background-color: $rich-black;
+    height: 90%;
+
+    span {
+      color: #ddd !important;
+    }
+
+    svg:not([icon="menu-2"]) {
+      animation: head-btn-svg-shake 3s ease-in-out infinite alternate;
+      path:first-child {
+        animation: head-btn-path-scale 3s ease-in 6s infinite alternate;
+      }
+    }
+    @keyframes head-btn-path-scale {
+      0% {
+        transform: translate(-30%, -30%) scale(1.6);
+        fill: #ddd;
+      }
+      7% {
+        transform: none;
+        fill: none;
+      }
+      100% {
+        transform: none;
+      }
+    }
+
+    @keyframes head-btn-svg-shake {
+      5% {
+        transform: skewY(-15deg);
+      }
+
+      10% {
+        transform: none;
+      }
+      100% {
+        transform: skewY(15deg);
+      }
+    }
+  }
+
+  .hamburger.js {
+    svg {
+      path:nth-child(1) {
+        transform: rotate(-45deg) translate(-50%, 0%);
+      }
+      path:nth-child(2) {
+        transform: rotate(-130deg) translate(-45%, 0%);
+      }
+      path:nth-child(3) {
+        transform: rotate(45deg) translate(20%, -30%);
+      }
+    }
+  }
+}
+
+footer{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+@import '__media.scss';

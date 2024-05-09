@@ -1,0 +1,61 @@
+extends helpers/template.pug
+
+block sections
+
+
+  .sector
+    section.services
+      h2 Services I Offer
+      div
+        .service-image
+          img(src="images/stock/services_wedding.webp", alt="")
+        h4 Weddings
+      div
+        .service-image
+          img(src="images/stock/services_fashion.jpg", alt="")
+        h4 Fashion
+      div
+        .service-image
+          img(src="images/stock/services_landscape.jpg", alt="")
+        h4 Landscape
+      div
+        .service-image
+          img(src="images/stock/services_studio.jpg", alt="")
+        h4 Studio
+      div
+        .service-image
+          img(src="images/stock/services_outdoor.png", alt="")
+        h4 Outdoor
+      div
+        .service-image
+          img(src="images/stock/services_products.png", alt="")
+        h4 Products
+
+    section.expertise
+      h2 My Expertise Area
+      div
+        svg(icon="photo-edit")
+        h4 Editing
+        span Enhancing your photo to it's highest beauty.
+        
+      div
+        svg(icon="video")
+        h4 Videography
+        span Quality shoots for all your skits and events.
+
+      div
+        svg(icon="camera")
+        h4 Photography
+        span You don't even have to be photogenic.
+
+      div
+        svg(icon="frame")
+        h4 Framing 
+        span Framing and all other finishing touches.
+  
+  include helpers/carousel.pug
+
+block scripts 
+  script(src="javascript/profile.js", type="text/javascript") 
+
+  //- include helpers/hire_me.pug
