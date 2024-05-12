@@ -331,4 +331,12 @@ footer{
   margin-top: 4rem;
 }
 
+#book-session{
+  position: fixed;
+  inset: 0;
+  background-color: #3333;
+  padding: 1rem;
+
+}
+
 @import '__media.scss';

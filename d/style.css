@@ -362,6 +362,70 @@ section img {
   box-shadow: none;
 }
 
+.faq {
+  grid-column: 2/span 2;
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+}
+.faq > img {
+  max-width: 90%;
+}
+
+.QnA {
+  display: grid;
+  gap: 3rem;
+  width: 100%;
+}
+.QnA > div {
+  padding: 2rem 0;
+  border-bottom: dashed 1px #666;
+}
+.QnA P {
+  max-width: 80%;
+}
+.QnA div.q {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  width: 80%;
+  background-color: #00507d33;
+  justify-self: start;
+  padding: 2rem;
+  border-radius: var(--rad-big) var(--rad-big) var(--rad-big);
+  color: #234;
+}
+.QnA div.q .person {
+  display: grid;
+  place-items: center;
+  background-color: rgba(255, 255, 255, 0.2666666667);
+  padding: 0.6rem 0.4rem;
+  border-radius: var(--rad-big);
+  margin-left: -1rem;
+}
+.QnA div.q .person svg {
+  color: #fff;
+}
+.QnA div.q p {
+  min-width: 300px;
+}
+.QnA p.a {
+  padding: 0.3rem 2rem;
+  color: #fff;
+  box-shadow: 3px 4px 8px rgba(51, 51, 51, 0.4666666667);
+  float: right;
+  background-color: #00507d;
+  margin-top: -1rem;
+  justify-self: end;
+  min-width: 200px;
+  text-align: center;
+  border-radius: var(--rad-big) 0 var(--rad-big) var(--rad-big);
+}
+.QnA p.h {
+  display: none;
+}
+
 #hire-me {
   grid-column-start: 1;
   grid-column-end: 4;
@@ -744,6 +808,13 @@ footer {
   text-wrap: wrap;
   text-align: center;
   margin-top: 4rem;
+}
+
+#book-session {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(51, 51, 51, 0.2);
+  padding: 1rem;
 }
 
 @media screen and (max-width: 650px) {

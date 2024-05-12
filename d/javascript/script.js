@@ -5,10 +5,17 @@ document.querySelectorAll("*").forEach((element, index) => {
 $(window).on("load", function () {
   document.querySelectorAll("*").forEach((element, index) => {
     element.getAnimations() > 0 &&
-      (element.style.animationPlayState = "running");
+    (element.style.animationPlayState = "running");
+  });
+  $("header nav li").each((i, each) => {
+    each = $(each);
+
+    window.location.pathname.includes(each.text().toLowerCase().trim())
+      ? each.addClass("js")
+      : each.removeClass("js");
   });
 
-  console.log(window.location.pathname.replace('/d/'/'.html', ''))
+  !$('header nav li.js')[0] && $($('header nav li')[0]).addClass('js');
 
   toggleHamburger();
 
@@ -16,71 +23,74 @@ $(window).on("load", function () {
     let activePage = $("header li.js").html();
 
     if (window.innerWidth < 870 && !$("header nav.js")[0]) {
-      $("header nav, .book-a-session").addClass('js');
-      !$('header > li')[0] && $("header nav").before(`<li> ${activePage} </li>`);
-      !$('header .hamburger')[0] && $("header .book-dark .book-a-session").after(
-        '<button class="hamburger"> <svg icon="menu-2"></svg></button>'
-      );
+      $("header nav, .book-a-session").addClass("js");
+      !$("header > li")[0] &&
+        $("header nav").before(`<li> ${activePage} </li>`);
+      !$("header .hamburger")[0] &&
+        $("header .book-dark .book-a-session").after(
+          '<button class="hamburger"> <svg icon="menu-2"></svg></button>'
+        );
 
-      $('header.js')[0] && openHamburger(d = $('header .hamburger')) /*$('.head-logo').after($('header nav'))*/;
-
+      $("header.js")[0] &&
+        openHamburger(
+          (d = $("header .hamburger"))
+        )
     } else if (window.innerWidth > 870) {
       $("header nav, header .book-a-session").removeClass("js");
       $("header > li, .hamburger").remove();
     }
 
-    setIcons()
+    setIcons();
   }
 
   $(window).on("resize", toggleHamburger);
 
 
-
   function openHamburger(d) {
-    d.tagName !== 'button' && (d = $(d).closest('button'))
-    $(d).toggleClass('js');
-    
-    $('header').toggleClass('js');
-    $('.book-dark').toggleClass('js')
-    
-    if ($('header.js')[0]) {
-      $('.book-dark').after($('header nav').removeClass('js'));
-      $('header').css('height', ($('header')[0].scrollHeight * 1.5))
+    d.tagName !== "button" && (d = $(d).closest("button"));
+    $(d).toggleClass("js");
+
+    $("header").toggleClass("js");
+    $(".book-dark").toggleClass("js");
+
+    if ($("header.js")[0]) {
+      $(".book-dark").after($("header nav").removeClass("js"));
+      $("header").css("height", $("header")[0].scrollHeight * 1.5);
     } else {
-      $('.head-logo').after($('header nav').addClass('js'));
-      $('header').css('height', '')
+      $(".head-logo").after($("header nav").addClass("js"));
+      $("header").css("height", "");
       // $('header > li').remove();
     }
-    
   }
 
-
-  document.addEventListener('click', function(e) {
+  document.addEventListener("click", function (e) {
     let d = e.target;
     d.tagName === "path" && (d = $(d).parent("svg")[0]);
-    (d.tagName === "svg" && $(d).parent("button")[0]) && (d = $(d).parent("button")[0]);
+    d.tagName === "svg" &&
+      $(d).parent("button")[0] &&
+      (d = $(d).parent("button")[0]);
 
     switch (true) {
-
       case !d:
         break;
 
-      case d.classList.contains('hamburger'):
+      case d.classList.contains("hamburger"):
         openHamburger(d);
         break;
 
-      default : 
+      default:
         break;
     }
+  });
 
-  })
+  const hireHeadWidth = $(".hire-head").innerWidth();
+  $(".hire-head")[0]?.style.setProperty(
+    "--hire-head-width",
+    `${hireHeadWidth}px`
+  );
 
-const hireHeadWidth = $('.hire-head').innerWidth();
-$('.hire-head')[0]?.style.setProperty('--hire-head-width', `${hireHeadWidth}px`)
-
-
-/////////////////////////////////////////////
-////  ICONS MANIPULATIONS
+  /////////////////////////////////////////////
+  ////  ICONS MANIPULATIONS
   function setIcons() {
     !localStorage.icons &&
       fetch(
@@ -124,14 +134,15 @@ $('.hire-head')[0]?.style.setProperty('--hire-head-width', `${hireHeadWidth}px`)
       });
     }
 
-    doIt()
+    doIt();
   }
   setIcons();
   /* ...........................................*/
 
-  
   setTimeout(() => {
-    $('.recent-shots')[0]?.style.setProperty('--kwasiampanin', `${$('.recent-shots')[0]?.scrollHeight * 2.4}px`)
-    
+    $(".recent-shots")[0]?.style.setProperty(
+      "--kwasiampanin",
+      `${$(".recent-shots")[0]?.scrollHeight * 2.4}px`
+    );
   }, 500);
 });

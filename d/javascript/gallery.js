@@ -6,8 +6,6 @@ $(window).on("load", () => {
       $(d).parent("button")[0] &&
       (d = $(d).parent("button")[0]);
 
-    console.log(d.hasAttribute("data-js-imgname"));
-
     switch (true) {
       case !d:
         break;
@@ -56,13 +54,11 @@ $(window).on("load", () => {
     j =
       (prev_next === "prev" ? j - 1 : j + 1) %
       (prev_next === "prev" ? -proImgs.length : proImgs.length);
-    // $(".car-assets ul li")[j].classList.add("active");
 
     $(`.all-other-photos [data-js-imgname="${proImgs[1]}"]`).addClass("js");
   }
 
   /*        End or Carousel                                  */
-  // $('.recent-photo').css('height', $('.profile').height())
 
   function galleryThings() {
     proImgs = [];
@@ -82,22 +78,23 @@ $(window).on("load", () => {
       $(".car-assets ul").css("display", "none");
     });
 
-    carouselPlace("prev");
+    carouselPlace("next");
   }
 
   galleryThings();
 
   function carListSelect(d) {
-    console.log(proImgs.indexOf($(d).attr("data-js-imgname")));
-
     flipThrough(proImgs.indexOf($(d).attr("data-js-imgname")));
 
     function flipThrough(times) {
-      times == 0 && carouselPlace('prev');
+      times == 0 && carouselPlace("prev");
       for (let i = 0; i <= times - 2; i++) {
-        carouselPlace("next")
+        carouselPlace("next");
       }
     }
   }
 
+  $(".recent-shots .recent-head").html(
+    '<h1 style="text-align: center; width: 100%"> My Gallery</h1>'
+  );
 });
