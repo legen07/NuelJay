@@ -1,39 +1,74 @@
-@media screen and (max-width: 800px) {
-  .container{
+@media screen and (max-width: 650px) {
+  .sections {
     display: flex;
     flex-direction: column;
-    grid-template-columns: 1fr;
-    // hei
+    justify-content: stretch;
   }
-  
-  .recent-shots{
+
+  .recent-shots {
     height: var(--kwasiampanin);
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (min-width: 650px) and (max-width: 1100px) {
+  .sections {
+    grid-template-columns: 1fr 1fr;
+
+    #hire-me {
+      grid-column: span 2;
+    }
+    .recent-shots {
+      height: var(--kwasiampanin);
+      grid-column: span 2;
+    }
+    footer {
+      grid-column: span 2;
+    }
+
+    .left-unactive {
+      transform: translateY(-7rem) scale(70%);
+      perspective: 600px;
+    
+      img {
+        transform: rotateX(-20deg);
+      }
+    }
+    
+    .right-unactive {
+      transform: translateY(7rem) scale(70%);
+      perspective: 600px;
+    
+      img {
+        transform: rotateX(20deg);
+      }
+    }
   }
 }
 
 @media screen and (min-width: 800px) {
-  .recent-shots{
+  .recent-shots {
     // width: var(--)
 
     .left-unactive {
-      transform: translateY(-8rem) scale(70%);
+      transform: translateY(-7rem) scale(70%);
       perspective: 600px;
-  
+
       img {
         transform: rotateX(-20deg);
       }
     }
 
     .right-unactive {
-      transform: translateY(8rem) scale(70%);
+      transform: translateY(7rem) scale(70%);
       perspective: 600px;
-  
+
       img {
         transform: rotateX(20deg);
       }
     }
 
-    .car-assets{
+    .car-assets {
       height: 70%;
     }
   }

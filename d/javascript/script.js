@@ -8,6 +8,8 @@ $(window).on("load", function () {
       (element.style.animationPlayState = "running");
   });
 
+  console.log(window.location.pathname.replace('/d/'/'.html', ''))
+
   toggleHamburger();
 
   function toggleHamburger() {
@@ -129,7 +131,7 @@ $('.hire-head')[0]?.style.setProperty('--hire-head-width', `${hireHeadWidth}px`)
 
   
   setTimeout(() => {
-    $('.recent-shots')[0]?.style.setProperty('--kwasiampanin', `${$('.recent-shots')[0]?.scrollHeight * 2.5}px`)
+    $('.recent-shots')[0]?.style.setProperty('--kwasiampanin', `${$('.recent-shots')[0]?.scrollHeight * 2.4}px`)
     
   }, 500);
 });

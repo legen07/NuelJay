@@ -13,42 +13,44 @@ html(lang="en")
     link(rel="stylesheet", href="style.css")
 
   body 
-    header 
-      .head-logo 
-        img(src="images/icons/black-logo.webp", alt="Logo" width="100")
+    .container
+      header 
+        .head-logo 
+          img(src="images/icons/black-logo.webp", alt="Logo" width="100")
 
-      nav 
-        ul 
-          li.js
-            a(href="index.html")
-              svg(icon="smart-home")
-              span Home 
-          li 
-            a
-              svg(icon="user-scan")
-              span About 
-          li
-            a(href="services.html")
-              svg(icon="camera-selfie")
-              span Services
-          li
-            a(href="gallery.html")
-              svg(icon="brand-google-photos")
-              span Gallery
+        nav 
+          ul 
+            li.js
+              a(href="index.html")
+                svg(icon="smart-home")
+                span Home 
+            li 
+              a
+                svg(icon="user-scan")
+                span About 
+            li
+              a(href="services.html")
+                svg(icon="camera-selfie")
+                span Services
+            li
+              a(href="gallery.html")
+                svg(icon="brand-google-photos")
+                span Gallery
 
-      .book-dark 
-        button.book-a-session 
-          span Book a session 
-          svg(icon="camera")
-    .container 
-
-      include profile.pug
-      block sections
-      include hire_me.pug
+        .book-dark 
+          button.book-a-session 
+            span Book a session 
+            svg(icon="camera")
 
 
-    footer 
-      span NuelJay 2024, Design by Joe Legen.
+      .sections
+        include profile.pug
+        block sections
+        include hire_me.pug
+
+
+        footer 
+          span @NuelJay 2024, Design by Joe Legen. All rights reserved.
 
 
   script( type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js")

@@ -2,9 +2,12 @@
 @import "__global.scss";
 @import "__pages.scss";
 
+
+
 body {
   background-color: #{$turquoise}11;
-  overflow-x: hidden;
+  overflow: hidden;
+  height: 100lvh;
   position: relative;
   background: linear-gradient(45deg, #{$blue}33, #{$turquoise}33);
 
@@ -35,10 +38,8 @@ body {
     background-size: 40%;
     animation: body-sand 36s ease-in-out infinite alternate;
     filter: blur(1px);
-    // left: 50%;
     opacity: .08;
   }
-  // height: 100vh;
 }
 @keyframes body-sand {
   to{
@@ -57,13 +58,20 @@ body {
   }
 }
 
-.container {
+.container{
+  // height: 100lvh;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+
+.sections {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   // grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   // grid-template-rows: 1fr;
   // flex-wrap: wrap;
-  align-items: stretch;
+  // align-items: stretch;
   width: 100%;
   padding: var(--pad-medium);
   // padding: 5rem;
@@ -203,18 +211,18 @@ header {
     align-items: center;
     font-weight: 600;
     transition: all 140ms ease-in-out 100ms;
-
     cursor: pointer;
-
+    border-radius: var(--rad-small);
+    text-decoration: none;
+    
     span {
-      color: #888;
+      color: #666;
     }
-
+    
     &.js,
-    &:hover {
+    a:not(a.js):hover {
       background-color: #a0a8b0;
       padding: calc(var(--pad-small) * 0.3) var(--pad-small);
-      border-radius: var(--rad-small);
       gap: 1rem;
 
       * {
@@ -229,13 +237,13 @@ header {
       }
     }
 
-    &:hover {
+    /*&:hover {
       background-color: #e0e3ea;
 
       * {
         color: #888;
       }
-    }
+    }*/
   }
 
   .book-dark.js{
@@ -316,12 +324,11 @@ header {
 }
 
 footer{
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
+  // height: 140%;
+  grid-column: span 3;
+  text-wrap: wrap;
+  text-align: center;
+  margin-top: 4rem;
 }
 
 @import '__media.scss';
