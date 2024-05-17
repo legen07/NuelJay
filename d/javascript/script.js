@@ -63,6 +63,20 @@ $(window).on("load", function () {
     }
   }
 
+  
+  let modal;
+  function modOpener(d) {
+    modal = d.getAttribute('modal')
+    $(`[close="${modal}"]`).addClass('js');
+    $(`#${modal}`)[0].classList.add('js')
+  }
+  function modCloser(d) {
+    modal = d.getAttribute('close');
+    $(`#${modal}`)[0]?.classList.remove('js')
+    $(d).removeClass('js');
+  }
+
+
   document.addEventListener("click", function (e) {
     let d = e.target;
     d.tagName === "path" && (d = $(d).parent("svg")[0]);
@@ -70,8 +84,22 @@ $(window).on("load", function () {
       $(d).parent("button")[0] &&
       (d = $(d).parent("button")[0]);
 
+    let c = $(d);
+
     switch (true) {
       case !d:
+        break;
+
+      case d.hasAttribute(['modal']):
+        modOpener(d);
+        break
+
+      case d.classList.contains('close'):
+        modCloser(d);
+        break
+
+      case c.hasClass('tc'):
+        returnComment(c);
         break;
 
       case d.classList.contains("hamburger"):
@@ -117,8 +145,6 @@ $(window).on("load", function () {
             fill="none"
             stroke="currentColor"
             stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
           ></svg>`;
 
         svgHeader = $(svgHeader);

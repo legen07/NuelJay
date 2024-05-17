@@ -1,2 +1,65 @@
 #book-session
-  section
+  .book-content
+    a.close(close="book-session")
+    fieldset
+
+      .close(close="book-session")
+        svg.close(icon="x", close="book-session")
+      
+      legend 
+        h2 Book a Session 
+        span I am available everyday.
+
+      form(action="#") 
+        .book-type 
+          .first-col
+            img(src="images/stock/services_studio.jpg", alt="Services I offer" width="80")
+          .second-col
+            h3 Event type 
+            - const events = ['Studio', 'Outdoor', 'Fashion', 'Landscape', 'Products', 'Commercial', 'Wedding', 'Skit', 'Movie', 'Free experimental','Documentary']
+            .event-select(modal="book-selector")
+              div(modal="book-selector")
+                span(modal="book-selector") Studio
+                div(modal="book-selector")
+                  svg(modal="book-selector", icon='chevron-compact-down')
+
+              a.close(close="book-selector")
+              ul#book-selector
+                each eachLi in events
+                  li.ats= eachLi
+
+          .session-period
+
+          span Lets talk about price on my follow up call.
+
+        .book-location 
+          label Region
+            input(type="text" placeholder="Volta Region")
+          label Address/Town
+            input(type="text" placeholder="Achimota")
+
+        .book-name 
+          label#full-name(for="full-name")
+            span Full Name
+            input(type="text" name="full-name" placeholder="Kojo Yeboah ")
+
+        .book-contact
+          label.js.ac#call
+            svg(icon="phone-call")
+            input(type="tel", name="call")
+          label.ac#whatsapp
+            svg(icon="brand-whatsapp")
+            input(type="tel", name="whatsapp")
+          label.ac#telegram
+            svg(icon="brand-telegram")
+            input(type="text", name="telegram")
+          label.ac#email
+            svg(icon="mail")
+            input(type="mail", name="emal")
+
+        .other-instructions 
+          textarea(name="" placeholder="If your have any information you will want to add up ...")
+
+        .submit-book 
+          input(type="button", value="submit")
+

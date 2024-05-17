@@ -14,7 +14,6 @@ html(lang="en")
 
   body 
 
-    //- include book_session.pug
 
     .container
       header 
@@ -41,9 +40,9 @@ html(lang="en")
                 span Gallery
 
         .book-dark 
-          button.book-a-session 
-            span Book a session 
-            svg(icon="camera")
+          button.book-a-session(modal="book-session")
+            span(modal="book-session") Book a session
+            svg(icon="camera", modal="book-session")
 
 
       .sections
@@ -55,6 +54,7 @@ html(lang="en")
         footer 
           span @NuelJay 2024, Design by Joe Legen. All rights reserved.
 
+    include book_session.pug
 
   script( type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js")
   block scripts
