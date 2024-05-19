@@ -192,7 +192,7 @@ $(window).on("load", function () {
       });
     }
 
-    doIt();
+    !!localStorage.icons && doIt();
   }
   setIcons();
   /* ...........................................*/
