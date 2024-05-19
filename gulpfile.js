@@ -10,7 +10,6 @@ import pug from 'gulp-pug';
 export function defaultTask(cb) {
   cb();
 }
-// const sass = require('gulp-sass')(require('sass'));
 
 export function css() {
   return src('./src/scss/*.scss')
