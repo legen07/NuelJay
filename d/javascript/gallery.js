@@ -74,7 +74,7 @@ $(window).on("load", () => {
     allImages.splice(allImages.length - 2, Infinity);
 
     allImages.forEach((each, i, all) => {
-      proImgs.unshift($(each).attr("src").replace("images/gallery/", ""));
+      proImgs.unshift($(each).attr("src").replace("opt-images/gallery/", ""));
       $(".car-assets ul").css("display", "none");
     });
 

@@ -1,0 +1,1 @@
+$(window).on("load",(function(){document.addEventListener("click",(t=>{let e=t.target;if("path"===e.tagName&&(e=$(e).parent("svg")[0]),!0===$(e).hasClass("y-bso"))retractBookSelector()}))}));
