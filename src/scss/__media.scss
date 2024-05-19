@@ -29,16 +29,16 @@
     .left-unactive {
       transform: translateY(-7rem) scale(70%);
       perspective: 600px;
-    
+
       img {
         transform: rotateX(-20deg);
       }
     }
-    
+
     .right-unactive {
       transform: translateY(7rem) scale(70%);
       perspective: 600px;
-    
+
       img {
         transform: rotateX(20deg);
       }

@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "gulp-cli": "^3.0.0",
     "gulp-pug": "^5.0.0",
@@ -6,7 +7,9 @@
     "gulp-sass": "^5.1.0",
     "pug": "^3.0.2",
     "sass": "^1.75.0",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "squashify": "^1.1.2",
+    "uuid": "^9.0.1"
   },
   "name": "nueljay",
   "version": "1.0.0",
@@ -20,6 +23,8 @@
   "devDependencies": {
     "gulp": "^5.0.0",
     "gulp-imagemin": "^9.1.0",
+    "gulp-webp": "^5.0.0",
+    "imagemin": "^9.0.0",
     "imagemin-webp": "^8.0.0"
   }
 }

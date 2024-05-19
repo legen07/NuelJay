@@ -37,7 +37,7 @@ body {
     height: 100dvh;
     overflow: hidden;
     z-index: -1;
-    background-image: url(images/stock/distress-sand-overlay.png);
+    background-image: url(images/stock/distress-sand-overlay.webp);
     background-repeat: repeat;
     background-size: 40%;
     animation: body-sand 36s ease-in-out infinite alternate;
@@ -362,7 +362,6 @@ footer {
   .book-content {
     background-color: #eee;
     margin: auto;
-    // height: 90%;
     opacity: 0;
     padding: 2rem;
     max-width: 550px;
@@ -370,8 +369,8 @@ footer {
     border-radius: var(--rad-big);
     box-shadow: 0 3px 5px#5553;
     position: relative;
-    transition: all 200ms ease-in-out;
-    transform: translate(0%, -25%) scale(70%, 55%);
+    transition: all 250ms ease-in-out;
+    transform: translate(0%, 45%) scale(80%, 10%);
 
     > a.close {
       top: 50%;

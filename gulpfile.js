@@ -1,45 +1,57 @@
-// import { gulpImagemin } from "\node_modules\gulp-imagemin\index.js";
-function defaultTask(cb) {
+import gulp, {src, dest, parallel, series} from 'gulp';
+
+import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
+import webp from 'gulp-webp'
+import sass from 'gulp-sass';
+// import sass from 'sass';
+
+import pug from 'gulp-pug';
+
+export function defaultTask(cb) {
   cb();
 }
+// const sass = require('gulp-sass')(require('sass'));
 
-exports.default = defaultTask;
-
-const {src, dest, watch } = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-// const imagemin = require('gulp-imagemin');
-// const webp = require('imagemin-webp');
-const rename = require('gulp-rename');
-
-function css() {
+export function css() {
   return src('./src/scss/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(dest('./d/'));
 }
 
-exports.css = css;
-
-const pug = require('gulp-pug');
-
-function html() {
+export function html() {
   return src('./src/pug/*.pug')
-    .pipe(pug())
-    .pipe(dest('./d'));
+  .pipe(pug())
+  .pipe(dest('./d'));
 }
 
-exports.html = html;
+export async function images() {
 
-//gulp.task('imagemin-webp', function() {
-//  return gulp.src('d/images/**/*.{jpg,png}')
-//    .pipe(imagemin([webp({ quality: 75 })]))
-//    .pipe(gulp.dest('min_images'));
-//});
-
-// exports[imagemin-webp] = imagemin;
+  return src('./src/images/**/*', { encoding: false })
+  .pipe(imagemin([
+    gifsicle({interlaced: true}),
+    mozjpeg({quality: 55, progressive: true}),
+    optipng({optimizationLevel: 1}),
+    svgo({
+      plugins: [
+        {
+          name: 'removeViewBox',
+          active: true
+        },
+        {
+          name: 'cleanupIDs',
+          active: false
+        }
+      ]
+    })
+  ]))
+  .pipe(webp())
+  .pipe(dest('./d/opt-images'));
+}
 
 function watchFiles() {
-  watch('./src/scss/*.scss', css);
-  watch(['./src/pug/*.pug', './src/pug/*/*.pug'], html);
+  gulp.watch('./src/scss/*.scss', css);
+  gulp.watch(['./src/pug/*.pug', './src/pug/*/*.pug'], html);
+  gulp.watch('./d/images/**/*', images)
 }
 
-exports.watch = watchFiles;
+export const watch = watchFiles;

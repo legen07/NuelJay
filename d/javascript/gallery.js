@@ -44,7 +44,7 @@ $(window).on("load", () => {
 
     let slicedImgs = proImgs.slice(0, 3);
     for (let i = 0; i < 3; i++) {
-      carSpots[i].innerHTML = `<img src="images/gallery/${slicedImgs[i]}">`;
+      carSpots[i].innerHTML = `<img src="opt-images/gallery/${slicedImgs[i]}">`;
       carSpots[i].firstElementChild.classList.toggle("js");
     }
     $($(".car-assets ul li")[j]).removeClass("active");
@@ -66,7 +66,7 @@ $(window).on("load", () => {
 
     for (let i = 3; i <= 22; i++) {
       $(".all-other-photos").append(
-        `<img src="images/gallery/nueljay_photography_${i}.jpeg" data-js-imgName="nueljay_photography_${i}.jpeg">`
+        `<img src="opt-images/gallery/nueljay_photography_${i}.webp" data-js-imgName="nueljay_photography_${i}.webp">`
       );
     }
 

@@ -64,6 +64,26 @@ $(window).on("load", function () {
   }
 
   
+  let g;
+
+  function openContact(c) {
+    g = g || c.closest('.book-contact').find('.js');
+
+    g.find('input').val().length < 1 && g.removeClass('js')
+    g?.find('input').val().length > 1 && g.addClass('has-value');
+
+    c.addClass('js');
+    g = c;
+  }
+
+  
+  function addToSelector(c) {
+    c.closest('.event-select').find('span').text(c.text());
+    c.closest('.event-select').find('li.js').removeClass('js');
+    c.addClass('js')
+  }
+
+  
   let modal;
   function modOpener(d) {
     modal = d.getAttribute('modal')
@@ -84,6 +104,10 @@ $(window).on("load", function () {
       $(d).parent("button")[0] &&
       (d = $(d).parent("button")[0]);
 
+    d.tagName === "svg" &&
+    $(d).parent("label")[0] &&
+    (d = $(d).parent("label")[0]);
+
     let c = $(d);
 
     switch (true) {
@@ -98,8 +122,16 @@ $(window).on("load", function () {
         modCloser(d);
         break
 
+      case c.hasClass('ac'):
+        openContact(c);
+        break;
+
       case c.hasClass('tc'):
         returnComment(c);
+        break;
+
+      case c.hasClass('ats'):
+        addToSelector(c);
         break;
 
       case d.classList.contains("hamburger"):
