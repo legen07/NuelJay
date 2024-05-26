@@ -1,13 +1,42 @@
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 900px) {
+  html{
+    font-size: 90%;;
+  }
+
+  :root{
+    --pad-small: .8rem;
+    --pad-medium: 1.6rem;
+    --pad-big: 1.4rem;
+    --rad-big: .8rem;
+    --rad-medium: .35rem;
+    --rad-small: .25rem;
+  }
+
+  .container {
+    scrollbar-width: none;
+  }
+
   .sections {
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
+    width: 100dvw;
+    max-width: 700px;
+  }
+
+  .QnA {
+    p.a {
+      // width: 95%;
+      border-radius: var(--rad-big) !important;
+    }
   }
 
   .recent-shots {
     height: var(--kwasiampanin);
     flex-shrink: 0;
+  }
+
+  .hire-head{
+    font-size: 60%;
   }
 }
 

@@ -2,6 +2,7 @@ import gulp, {src, dest, parallel, series} from 'gulp';
 
 import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
 import webp from 'gulp-webp'
+
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
@@ -35,9 +36,7 @@ export function js() {
     .pipe(dest('./d/ugly-js'))
 }
 
-
 export async function images() {
-
   return src('./src/images/**/*', { encoding: false })
   .pipe(imagemin([
     gifsicle({interlaced: true}),
@@ -59,12 +58,21 @@ export async function images() {
   .pipe(webp())
   .pipe(dest('./d/opt-images'));
 }
+export async function placeImages() {
+  return src('./src/images/**//*', { encoding: false })
+  .pipe(imagemin([
+    mozjpeg({quality: 0, progressive: false, verbose: true, fastCrush: true}),
+    optipng({optimizationLevel: 7, verbose: true})
+  ]))
+  .pipe(dest('./d/place-images'));
+}
 
 function watchFiles() {
   gulp.watch('./src/scss/*.scss', css);
   gulp.watch(['./src/pug/*.pug', './src/pug/*/*.pug'], html);
-  gulp.watch('./d/images/**/*', images);
+  gulp.watch('./src/images/**//*', images);
+  // gulp.watch('./d/opt-images/**/*', placeImages);
   gulp.watch('./d/javascript/*', js)
 }
 
-export const watch = watchFiles;
+export const watch = watchFiles

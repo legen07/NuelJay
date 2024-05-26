@@ -10,31 +10,14 @@ block sections
     .sector
       section.services
         h2 Services I Offer
-        div
-          .service-image
-            img(src="opt-images/stock/services_wedding.webp", alt="")
-            h4 Weddings
-            span I take spcial unforgetable momments at your wedding. 
-        div
-          .service-image
-            img(src="opt-images/stock/services_fashion.webp", alt="")
-          h4 Fashion
-        div
-          .service-image
-            img(src="opt-images/stock/services_landscape.webp", alt="")
-          h4 Landscape
-        div
-          .service-image
-            img(src="opt-images/stock/services_studio.webp", alt="")
-          h4 Studio
-        div
-          .service-image
-            img(src="opt-images/stock/services_outdoor.webp", alt="")
-          h4 Outdoor
-        div
-          .service-image
-            img(src="opt-images/stock/services_products.webp", alt="")
-          h4 Products
+
+        - const services = ['wedding', "fashion", "landscape", "studio", "outdoor", "products"];
+
+          each service in services
+            div(modal="book-session").bts
+              .service-image(modal="book-session").bts
+                img.bts(src=`opt-images/stock/services_${service}.webp` alt=service, modal="book-session")
+                h4= service
 
 
       section.expertise
@@ -62,6 +45,90 @@ block sections
 
 
   section.faq 
+
+    h2 Custommer Ratings 
+
+    .reviews
+      .review
+        - let m = 0;
+        .stars 
+          while m < 5
+            svg(icon='star')= m++
+
+        .event-type 
+          span wedding
+          
+        article 
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum ad minus exercitationem repudiandae labore officiis eveniet dolores libero, odit laborum nemo a eum, placeat pariatur beatae aliquid odio atque.
+
+        .reviewer 
+          svg(icon="user-circle")
+          span Juliet Sepawu
+
+
+
+      .review
+        - let o = 0;
+        .stars 
+          while o < 5
+            svg(icon='star')= o++
+
+        .event-type 
+          span fashion
+          
+        article 
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum ad minus exercitationem repudiandae labore officiis eveniet dolores libero, odit laborum nemo a eum, placeat pariatur beatae aliquid odio atque.
+
+        .reviewer 
+          svg(icon="user-circle")
+          span Juliet Sepawu
+
+
+
+      .review
+        - let p = 0;
+        .stars 
+          while p < 5
+            svg(icon='star')= p++
+
+        .event-type 
+          span commercial
+          
+        article 
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum ad minus exercitationem repudiandae labore officiis eveniet dolores libero, odit laborum nemo a eum, placeat pariatur beatae aliquid odio atque.
+
+        .reviewer 
+          svg(icon="user-circle")
+          span Juliet Sepawu
+
+
+
+      .review
+        - let r = 0;
+        .stars 
+          while r < 5
+            svg(icon='star')= r++
+
+        .event-type 
+          span wedding
+          
+        article 
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum ad minus exercitationem repudiandae labore officiis eveniet dolores libero, odit laborum nemo a eum, placeat pariatur beatae aliquid odio atque.
+
+        .reviewer 
+          svg(icon="user-circle")
+          span Juliet Sepawu
+
+    .scrollers
+      .east
+        svg(icon="arrow-narrow-left", class="east")
+      .west
+        svg(icon="arrow-narrow-right", class="west")
+
+
+      
+
+
     h2 Frequetly Asked Questions 
 
     img(src="opt-images/stock/faq-illu.webp", alt="")
@@ -70,7 +137,7 @@ block sections
       div
         div.q
           .person
-            svg(icon='user-question') 
+            svg(icon='user-question')
           p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero cumque error et dolor corrupti distinctio suscipit modi asperiores exercitationem praesentium!
 
         p.a Yes, I do this but I do it this and that way. It takes this and that time. It cost this and that.
@@ -137,4 +204,4 @@ block sections
 
 
 block scripts
-  script(src="ugly-js/services-min.js" type="text/javascript")
+  script(src="ugly-js/services-min.js" type="module")

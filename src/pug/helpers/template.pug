@@ -12,7 +12,22 @@ html(lang="en")
 
     link(rel="stylesheet", href="style.css")
 
+    style.
+      @keyframes spinner{
+        to{
+          transform: rotate(360deg);
+        }
+      }
+
+      body.js #preloader{
+        display: none; 
+      }
+
   body 
+
+    #preloader(style="position: fixed; background-color: #eee9;inset: 0; z-index: 99;  backdrop-filter: blur(14px)")
+      .pre-content(style=" background-color: #eee; height: 6rem; width: 6rem; border-radius: 1rem; display: grid; place-items: center; box-shadow: 0 0 2px #ffffff , 0 0 10px 4px #8886; transform: translate(-50%, -50%); left: 50%; top: 50%;position: absolute;")
+        .spinner(style="height: 2rem; width: 2rem;  border-radius: 5rem; border: solid 2px #ddd; border-right: solid 2px #000; animation: spinner 600ms ease-out infinite;")
 
 
     .container
@@ -58,4 +73,4 @@ html(lang="en")
 
   script( type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js")
   block scripts
-  script(src="ugly-js/script-min.js")
+  script(src="ugly-js/script-min.js" type="module")

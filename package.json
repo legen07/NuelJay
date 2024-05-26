@@ -2,6 +2,7 @@
   "type": "module",
   "dependencies": {
     "gulp-cli": "^3.0.0",
+    "gulp-debug": "^5.0.1",
     "gulp-pug": "^5.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",

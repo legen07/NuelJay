@@ -63,7 +63,8 @@ body {
 }
 
 .container {
-  // height: 100lvh;
+  display: grid;
+  justify-items: center;
   height: 100%;
   overflow-y: scroll;
 }
@@ -71,21 +72,13 @@ body {
 .sections {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  // grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-  // grid-template-rows: 1fr;
-  // flex-wrap: wrap;
-  // align-items: stretch;
-  width: 100%;
   padding: var(--pad-medium);
-  // padding: 5rem;
+  width: 100%;
   justify-content: center;
   box-sizing: border-box;
   height: 100%;
   position: relative;
   max-width: 1400px;
-  // min-width: 100dvh;
-  left: 50%;
-  transform: translateX(-50%);
   gap: 1.7rem;
 }
 
@@ -112,31 +105,20 @@ svg[width] {
 }
 
 header {
-  flex-grow: 100;
-  flex-shrink: 0;
   margin-top: 1rem;
-  grid-column: span 3;
   display: flex;
   box-sizing: content-box;
   width: 90%;
   height: 4rem;
   position: relative;
   max-width: 1400px;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: #f8f8f8;
   box-shadow: 0 1px 3px #4445;
   border-radius: var(--rad-medium);
   padding: calc(var(--pad-small) * 0.5) var(--pad-small);
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   transition: all 250ms ease-in-out;
-
-  > li {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
 
   &.js {
     display: grid;
@@ -144,6 +126,7 @@ header {
     grid-template-rows: auto 1fr;
     row-gap: 2rem;
     justify-content: space-between;
+    align-items: start;
 
     > li {
       display: none;
@@ -171,6 +154,36 @@ header {
     }
   }
 
+  &.scrolled {
+    position: sticky;
+    z-index: 5;
+    top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    .head-logo img.js {
+      display: none;
+    }
+
+    .head-logo a {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        border-radius: 5rem;
+      }
+
+      svg {
+        background-color: #fff6;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        padding: 0.7rem;
+      }
+    }
+  }
+
   @keyframes nav-slide-in {
     to {
       opacity: 1;
@@ -185,19 +198,14 @@ header {
   }
 
   .head-logo {
-    height: 100%;
-    align-self: center;
 
     img {
       height: 3.4rem;
-      display: grid;
+      // display: grid;
     }
   }
 
   nav {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
 
     ul {
       display: flex;
@@ -257,6 +265,7 @@ header {
 
     .book-a-session {
       display: flex;
+      text-wrap: nowrap;
     }
     .hamburger {
       background-color: #0000;
@@ -345,9 +354,9 @@ footer {
   display: grid;
   place-items: center;
   background-color: #3333;
-  padding: 1rem;
   opacity: 0;
   transition: all 200ms;
+  z-index: 8;
 
   &.js {
     visibility: visible;
@@ -360,17 +369,22 @@ footer {
   }
 
   .book-content {
-    background-color: #eee;
+    background-color: #f8f8f8;
+    overflow-y: scroll;
+    display: grid;
+    // overscroll-behavior: contain;
+    scrollbar-width: none;
     margin: auto;
     opacity: 0;
-    padding: 2rem;
     max-width: 550px;
-    width: 95%;
+    max-height: 90dvh;
+    height: min-content;
+    width: 97%;
     border-radius: var(--rad-big);
     box-shadow: 0 3px 5px#5553;
     position: relative;
     transition: all 250ms ease-in-out;
-    transform: translate(0%, 45%) scale(80%, 10%);
+    transform: translate(0%, 15%) scale(70%, 10%);
 
     > a.close {
       top: 50%;
@@ -386,15 +400,9 @@ footer {
         width: 100vh;
       }
     }
-  }
-
-  fieldset {
-    height: 100%;
-    display: grid;
-    border: none;
-
     > .close {
-      position: absolute;
+      position: sticky;
+      justify-self: end;
       top: 0.5rem;
       right: 0.5rem;
       border: solid 1px #3333;
@@ -404,9 +412,16 @@ footer {
     }
   }
 
+  fieldset {
+    overflow: hidden;
+    padding: var(--pad-big);
+    display: grid;
+    border: none;
+  }
+
   legend {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     width: 100%;
 
     h2 {
@@ -431,7 +446,7 @@ footer {
       padding: calc(var(--pad-small) * 0.8);
       border-radius: var(--rad-small);
       border: solid 1px #3333;
-      background-color: #fff;
+      background-color: #ffffff;
       width: 100%;
     }
 
@@ -443,42 +458,55 @@ footer {
     .book-type {
       display: grid;
       grid-auto-flow: column;
-      place-items: center;
+      align-items: center;
+      background-color: #fff;
+      border-radius: var(--rad-medium);
+      border: dashed 1px #3333;
+      padding: var(--pad-small) !important;
+      margin: 0 -1rem;
       height: 100%;
-      // justify-content: center;
 
       .first-col {
+        width: 50px;
+        aspect-ratio: 1;
+
         img {
+          width: 100%;
           border-radius: var(--rad-small);
         }
       }
-      .second-col {
+      .second-col,
+      .third-col {
+        display: grid;
+        align-content: space-evenly;
+        height: 100%;
+        width: 100%;
+
         .event-select {
           display: grid;
-          justify-items: center;
-          align-items: stretch;
-          border: solid 1px #3333;
-          padding: 0.2rem 1rem;
-          height: 2rem;
+          place-items: center;
+          outline: solid 1px #3333;
+          padding: calc(var(--pad-small) * 0.2) var(--pad-small);
+          width: 100%;
           border-radius: var(--rad-small);
           position: relative;
 
           > div {
             display: flex;
-            gap: 4rem;
+            gap: calc(var(--pad-small) * 1.6);
             width: 100%;
-            margin-bottom: 1rem;
 
             span {
               flex-grow: 1;
               flex-shrink: 0;
+              display: block;
             }
             div {
-              height: 2rem;
               background-color: #3333;
               justify-self: right;
-              margin: -0.2rem -1rem;
-              padding: 0 0.8rem;
+              align-self: stretch;
+              margin: calc(var(--pad-small) * -0.2) calc(var(--pad-small) * -1);
+              padding: 0 calc(var(--pad-small) * 0.8);
               border-radius: 0 var(--rad-small) var(--rad-small) 0;
               color: #fff;
               flex-shrink: 1;
@@ -492,30 +520,34 @@ footer {
             text-decoration: none;
             border: none;
             position: absolute;
-
+            
             &.js {
-              height: 100vh;
-              width: 100vh;
+              height: 200lvh;
+              width: 200lvw;
             }
           }
 
           ul {
+            overflow-y: auto;
+            scrollbar-width: none;
+            max-height: 50dvh;
             visibility: hidden;
-            background-color: #fffe;
+            background-color: #fff;
             position: absolute;
             box-shadow: 0 0 5px #3333;
             border-radius: var(--rad-medium);
-            padding: 0.7rem;
+            padding: var(--pad-small);
             top: 2.3rem;
             transition: all 180ms ease-in-out;
             transform: scaleY(60%) translateY(-25%);
             opacity: 0;
-            z-index: 99999999999999;
+            z-index: 9;
 
             li {
-              font-size: 80%;
+              font-size: 90%;
               border-bottom: dashed 1px #5555;
-              padding: 0.7rem 0.3rem 0.3rem 0.3rem;
+              padding: var(--pad-small) calc(var(--pad-small) * 0.4)
+                calc(var(--pad-small) * 0.4) calc(var(--pad-small) * 0.4);
               text-wrap: nowrap;
               cursor: pointer;
               transition: all 1s ease-in-out;
@@ -538,6 +570,20 @@ footer {
         }
       }
 
+      .third-col {
+        display: grid;
+        column-gap: 0.4rem;
+
+        h3 {
+          grid-column: span 2;
+        }
+      }
+
+      .second-col *:not(h3),
+      .third-col *:not(h3) {
+        cursor: pointer;
+      }
+
       > span {
         grid-column: 1 / span 3;
         grid-row: 2;
@@ -550,7 +596,7 @@ footer {
         display: flex;
         border: solid 1px #3333;
         border-radius: var(--rad-medium);
-        padding: 0.4rem;
+        padding: calc(var(--pad-small) * 0.6);
         background-color: #fff;
         width: 2/1;
         gap: 1rem;
@@ -590,7 +636,7 @@ footer {
         border: none;
         border-bottom: solid 1px #3333;
         width: 3rem;
-        padding: 0.1rem 0.4rem;
+        padding: calc(var(--pad-small) * 0.2) calc(var(--pad-small) * 0.7);
 
         &:focus {
           width: 100%;
@@ -602,7 +648,7 @@ footer {
     .book-location,
     .book-name {
       border-bottom: dashed 1px #3333;
-      padding: 1rem 0;
+      padding: var(--pad-small) 0;
       column-gap: 1rem;
 
       label {
@@ -621,7 +667,6 @@ footer {
       }
 
       input {
-        // width: unset;
         justify-self: flex-end;
       }
     }
@@ -643,7 +688,7 @@ footer {
         border: none;
         background-color: $blue;
         color: #fff;
-        padding: 1rem;
+        padding: var(--pad-small);
         border-radius: var(--rad-medium);
       }
     }

@@ -1,3 +1,5 @@
+let allOther = false;
+
 $(window).on("load", () => {
   document.addEventListener("click", function (e) {
     let d = e.target;
@@ -57,7 +59,7 @@ $(window).on("load", () => {
 
     $(`.all-other-photos [data-js-imgname="${proImgs[1]}"]`).addClass("js");
   }
-
+  
   /*        End or Carousel                                  */
 
   function galleryThings() {
@@ -79,13 +81,15 @@ $(window).on("load", () => {
     });
 
     carouselPlace("next");
+
+    allOther = true;
   }
 
   galleryThings();
 
   function carListSelect(d) {
     flipThrough(proImgs.indexOf($(d).attr("data-js-imgname")));
-
+    
     function flipThrough(times) {
       times == 0 && carouselPlace("prev");
       for (let i = 0; i <= times - 2; i++) {
@@ -98,3 +102,30 @@ $(window).on("load", () => {
     '<h1 style="text-align: center; width: 100%"> My Gallery</h1>'
   );
 });
+
+
+const targetElement = $('.recent-shots')[0];
+
+function setCarHeight() {
+  $(".recent-shots")[0]?.style.setProperty(
+    "--kwasiampanin",
+    `${$(".recent-shots")[0]?.scrollHeight * 3}px`
+  );
+}
+
+const observer = new MutationObserver((mutationList, observer) => {
+  for (let mutation of mutationList) {
+    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+      console.log('New child nodes added:', mutation.addedNodes)
+
+      setCarHeight();
+    }
+  }
+})
+const observerConfig = { childList: true};
+
+observer.observe(targetElement, observerConfig)
+
+// $(window).on('resize', () => {
+  // setCarHeight();
+// })

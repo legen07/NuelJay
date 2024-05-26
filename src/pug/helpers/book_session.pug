@@ -1,10 +1,10 @@
 #book-session
   .book-content
     a.close(close="book-session")
+    .close(close="book-session")
+      svg.close(icon="x", close="book-session")
     fieldset
 
-      .close(close="book-session")
-        svg.close(icon="x", close="book-session")
       
       legend 
         h2 Book a Session 
@@ -26,9 +26,25 @@
               a.close(close="book-selector")
               ul#book-selector
                 each eachLi in events
-                  li.ats= eachLi
+                  li.ats(class=eachLi.toLowerCase())= eachLi
 
-          .session-period
+          .third-col 
+            h3 Session Period 
+            - const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+            .event-select(modal="session-month")
+              span(modal="session-month") Month
+              a.close(close="session-month")
+              ul#session-month
+                each month in months 
+                  li.atd= month
+
+            .event-select(modal="session-date")
+              span(modal="session-date") Date
+              a.close(close="session-date")
+              ul#session-date
+                - let n = 1;
+                  while n < 32
+                    li.atd= n++
 
           span Lets talk about price on my follow up call.
 
@@ -62,4 +78,3 @@
 
         .submit-book 
           input(type="button", value="submit")
-

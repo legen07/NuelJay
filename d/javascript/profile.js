@@ -43,7 +43,7 @@ function carouselPlace(prev_next) {
 
   let slicedImgs = proImgs.slice(0, 3);
   for (let i = 0; i < 3; i++) {
-    carSpots[i].innerHTML = `<img src="opt-images/gallery/${slicedImgs[i]}">`;
+    carSpots[i].innerHTML = `<img src="opt-images/gallery/${slicedImgs[i]}" width="300">`;
     carSpots[i].firstElementChild.classList.toggle("js");
   }
   $($(".car-assets ul li")[j]).removeClass("active");
@@ -64,3 +64,23 @@ $(".car-assets ul > *")[j].classList.add("active");
 carouselPlace("prev");
 /*        End or Carousel                                  */
 // $('.recent-photo').css('height', $('.profile').height())
+
+
+const targetElement = $('.recent-photo .active')[0];
+
+function setCarHeight(height) {
+  $(".recent-shots")[0]?.style.setProperty(
+    "--kwasiampanin",
+    `${height * 1.4}px`
+  );
+  $(".reviews")
+}
+
+const resizeObserver = new ResizeObserver(entries => {
+  for (let entry of entries) {
+    const { width, height } = entry.contentRect;
+    setCarHeight( height)
+  }
+});
+
+resizeObserver.observe(targetElement)
