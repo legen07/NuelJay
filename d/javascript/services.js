@@ -1,5 +1,4 @@
 import { addToSelector } from "./script-min.js";
-import { modCloser } from "./script.js";
 
 $(window).on("load", function () {
   /*$('.QnA .a').each( (i, each) => {

@@ -76,3 +76,9 @@ function watchFiles() {
 }
 
 export const watch = watchFiles
+
+gulp.task('smalls', function () {
+  gulp.watch('./create_small.sh', function runSmall() {
+    return create_small
+  })
+})

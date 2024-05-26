@@ -7,6 +7,9 @@ window.onload = document.querySelectorAll("*").forEach((element, index) => {
 });
 
 document.onload = $("body").addClass("js");
+$(window).on('reload', function () {
+  $('body').removeClass('js')
+})
 
 $("header nav li").each((i, each) => {
   each = $(each);

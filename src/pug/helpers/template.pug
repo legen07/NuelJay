@@ -29,6 +29,10 @@ html(lang="en")
       .pre-content(style=" background-color: #eee; height: 6rem; width: 6rem; border-radius: 1rem; display: grid; place-items: center; box-shadow: 0 0 2px #ffffff , 0 0 10px 4px #8886; transform: translate(-50%, -50%); left: 50%; top: 50%;position: absolute;")
         .spinner(style="height: 2rem; width: 2rem;  border-radius: 5rem; border: solid 2px #ddd; border-right: solid 2px #000; animation: spinner 600ms ease-out infinite;")
 
+    script(type="text/javascript").
+      setTimeout(function () {
+        document.querySelector('body').classList.add('js');
+      }, 9000)
 
     .container
       header 
