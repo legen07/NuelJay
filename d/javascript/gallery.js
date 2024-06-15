@@ -60,7 +60,7 @@ $(window).on("load", () => {
     $(`.all-other-photos [data-js-imgname="${proImgs[1]}"]`).addClass("js");
   }
   
-  /*        End or Carousel                                  */
+  /*        End or Carousel                                       */
 
   function galleryThings() {
     proImgs = [];
@@ -125,7 +125,3 @@ const observer = new MutationObserver((mutationList, observer) => {
 const observerConfig = { childList: true};
 
 observer.observe(targetElement, observerConfig)
-
-// $(window).on('resize', () => {
-  // setCarHeight();
-// })

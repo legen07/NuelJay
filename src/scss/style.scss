@@ -3,13 +3,13 @@
 @import "__pages.scss";
 
 body {
-  // background-color: #{$turquoise}11;
+  background-color: #{$turquoise}11;
   overflow: hidden;
   height: 100lvh;
   position: relative;
   background: linear-gradient(45deg, #{$blue}33, #{$turquoise}33);
 
-  /*&::before {
+  &::before {
     content: "";
     position: absolute;
     max-width: 100vw;
@@ -37,13 +37,13 @@ body {
     height: 100dvh;
     overflow: hidden;
     z-index: -1;
-    background-image: url(images/stock/distress-sand-overlay.webp);
+    background-image: url(opt-images/stock/new-distress.webp);
     background-repeat: repeat;
-    background-size: 40%;
+    background-size: 140%;
     animation: body-sand 36s ease-in-out infinite alternate;
     filter: blur(1px);
-    opacity: 0.08;
-  }*/
+    opacity: 0.03;
+  }
 }
 @keyframes body-sand {
   to {
