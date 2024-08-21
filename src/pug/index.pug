@@ -4,32 +4,18 @@ block sections
 
 
   .sector
+
     section.services
-      h2 Services I Offer
-      div
-        .service-image
-          img(src="opt-images/stock/services_wedding.webp", alt="")
-        h4 Weddings
-      div
-        .service-image
-          img(src="opt-images/stock/services_fashion.webp", alt="")
-        h4 Fashion
-      div
-        .service-image
-          img(src="opt-images/stock/services_landscape.webp", alt="")
-        h4 Landscape
-      div
-        .service-image
-          img(src="opt-images/stock/services_studio.webp", alt="")
-        h4 Studio
-      div
-        .service-image
-          img(src="opt-images/stock/services_outdoor.webp", alt="")
-        h4 Outdoor
-      div
-        .service-image
-          img(src="opt-images/stock/services_products.webp", alt="")
-        h4 Products
+        h2 Services I Offer
+
+        - const services = ['wedding', "fashion", "landscape", "studio", "outdoor", "products"];
+
+          each service in services
+            div
+              .service-image()
+                img(src=`opt-images/stock/services_${service}.webp` alt=service)
+                h4= service  + ' photos'
+              button(modal="book-session") book this
 
     section.expertise
       h2 My Expertise Area
@@ -56,6 +42,6 @@ block sections
   include helpers/carousel.pug
 
 block scripts 
-  script(src="ugly-js/profile-min.js", type="module")
+  script(src="javascript/index.js", type="module")
 
   //- include helpers/hire_me.pug

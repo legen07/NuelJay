@@ -2,14 +2,60 @@ document.querySelectorAll("*").forEach((element, index) => {
   element.getAnimations() > 0 && (element.style.animationPlayState = "paused");
 });
 
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// ! ICONS MANIPULATIONS
+
+// const setIcons = () => {
+  !localStorage.icons &&
+    fetch(
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.11.0/tabler-nodes-outline.json",
+      { priority: "high" }
+    )
+      .then((outJsonUrl) => outJsonUrl.json())
+      .then((outJsonUrl) =>
+        localStorage.setItem("icons", JSON.stringify(outJsonUrl))
+      )
+      .then(setIcons);
+
+  export function setIcons() {
+    let allIconsObject = JSON.parse(localStorage.getItem("icons"));
+
+    for (let i = 0; i <= [...$("[icon]")].length - 1; i++) {
+      if (!$($("[icon]")[i]).find("path")[0]) {
+        let notYetSvg = $("[icon]")[i];
+
+        let svgName = $(notYetSvg).attr("icon");
+
+        $(notYetSvg).attr({
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 24 24",
+        });
+
+        allIconsObject[svgName].forEach((each) => {
+          let path = `<path d="${each[1].d}" />`;
+          $("[icon]")[i].insertAdjacentHTML("afterbegin", path);
+        });
+      } else {
+        continue;
+      }
+    }
+  }
+
+  !!localStorage.icons && setIcons();
+// }
+// setIcons();
+/* ...........................................*/
+
+
 window.onload = document.querySelectorAll("*").forEach((element, index) => {
   element.getAnimations() > 0 && (element.style.animationPlayState = "running");
 });
 
 document.onload = $("body").addClass("js");
-$(window).on('reload', function () {
-  $('body').removeClass('js')
-})
+$(window).on("reload", function () {
+  $("body").removeClass("js");
+});
 
 $("header nav li").each((i, each) => {
   each = $(each);
@@ -63,28 +109,30 @@ function openHamburger(d) {
 
 let headScrolled = false;
 
-$('.container').on("scroll", (e) => {
+$(".container").on("scroll", (e) => {
 
-  if ($('header')[0].getBoundingClientRect().y < 10) {
+  if ($("header")[0].getBoundingClientRect().y < 10) {
     $("header").addClass("scrolled");
 
-    if (!headScrolled && $('.profile')[0].getBoundingClientRect().bottom < 100) {
-      $("header .head-logo").append(`<a class="btt"><img src="opt-images/gallery/manuel_himself.webp"><svg icon="chevron-up"></a>`);
-      $("header .head-logo > img").addClass('js');
+    if (
+      !headScrolled &&
+      $(".profile")[0].getBoundingClientRect().bottom < 100
+    ) {
+      $("header .head-logo").append(
+        `<a class="btt"><img src="opt-images/gallery/manuel_himself.webp"><svg icon="chevron-up"></a>`
+      );
+      $("header .head-logo > img").addClass("js");
       headScrolled = true;
-      setIcons()
+      setIcons();
     }
-    
-  } else if ($('header')[0].getBoundingClientRect().y > 10) {
+  } else if ($("header")[0].getBoundingClientRect().y > 10) {
     $("header").removeClass("scrolled");
-    
   }
-  if (headScrolled && $('.profile')[0].getBoundingClientRect().bottom > 99) {
-    $("header .head-logo a").remove()
-    $("header .head-logo > img").removeClass('js');
+  if (headScrolled && $(".profile")[0].getBoundingClientRect().bottom > 99) {
+    $("header .head-logo a").remove();
+    $("header .head-logo > img").removeClass("js");
     headScrolled = false;
   }
-
 });
 
 let g;
@@ -109,41 +157,80 @@ export function addToSelector(c) {
       .text()
       .toLowerCase()}.webp" width="80">`
   );
-  modCloser(c.closest('[modal]').find('.close')[0])
-  
+  modCloser(c.closest("[modal]").find(".close")[0]);
+
   newImage[0].naturalHeight > 1
-  ? $(".first-col img").replaceWith(newImage)
+    ? $(".first-col img").replaceWith(newImage)
     : $(".first-col img").replaceWith(
         `<img src="opt-images/stock/services_studio.webp" width="80">`
       );
-
 }
 
 function addToDate(c) {
   c.closest(".event-select").find("span").text(c.text());
   c.closest(".event-select").find("li.js").removeClass("js");
   c.addClass("js");
-  modCloser(c.closest('[modal]').find('.close')[0])
+  modCloser(c.closest("[modal]").find(".close")[0]);
 }
 
 function backToTop() {
-  $('.container')[0].scrollTo({top: 0, behavior: "smooth" })
+  $(".container")[0].scrollTo({ top: 0, behavior: "smooth" });
 }
 
+function bookThisService(c) {
+  c = $(`#book-selector .${c.find("img").attr("alt") || c.attr("alt")}`);
+  addToSelector(c);
+}
+function toggleForm(c) {
+  let objName = c.attr("modal") || c.attr("close");
+  if (c.attr("modal")) {
+    c.attr("close", objName);
+    c.removeAttr("modal");
+  } else {
+    c.attr("modal", objName);
+    c.removeAttr("close");
+  }
+}
+
+const bookSession = () => {
+
+};
+
+//////////////////////////////////////////////
+// Auto modal open and close
 let modal;
-function modOpener(d) {
-  $('header.js')[0] && openHamburger($('.hamburger.js'));
-  modal = d.getAttribute("modal");
+function modOpener(c) {
+  modal = c.attr("modal");
   $(`[close="${modal}"]`).addClass("js");
   $(`#${modal}`)[0].classList.add("js");
+
+  // Same element to toggle if modal also has dp at attribute  property.
+
+  if (c.is("[dp]")) {
+    toggleForm(c);
+  }
+
+  const modFunc = /^(\b\w+\b).*(\b\w+\b)/m.exec(modal);
+  let funcName = !!(modFunc)[1]
+    ? modFunc[1] + modFunc[2][0].toUpperCase() + modFunc[2].slice(1)
+    : modal;
+  try {
+    eval(funcName + "(modal, c)");
+  } catch {}
 }
-export function modCloser(d) {
-  modal = d.getAttribute("close");
+function modCloser(c) {
+  modal = c.attr("close");
   $(`#${modal}`)[0]?.classList.remove("js");
-  $(d).removeClass("js");
+  c.removeClass("js");
+
+  if (c.is("[dp]")) {
+    toggleForm(c);
+  }
 }
 
-document.addEventListener("click", function (e) {
+/////////////////////////////////////////
+//// UNIVERSAL DOCUMENT EVENT lISTENER //
+document.addEventListener("click", (e) => {
   let d = e.target;
   d.tagName === "path" && (d = $(d).parent("svg")[0]);
   d.tagName === "svg" &&
@@ -155,47 +242,56 @@ document.addEventListener("click", function (e) {
     (d = $(d).parent("label")[0]);
 
   let c = $(d);
+  let clickCount = 0;
+  
+  const clickSwitch = () => {
+    clickCount += 1;
+    switch (true) {
+      case c.is("[modal]"):
+        modOpener(c);
+        break;
 
-  let b = $(c);
+      case c.is("[close]"):
+        modCloser(c);
+        break;
 
-  switch (true) {
-    case !d:
-      break;
+      case c.hasClass("ac"):
+        openContact(c);
+        break;
 
-    case d.hasAttribute(["modal"]):
-      modOpener(d);
-      break;
+      case c.hasClass("tc"):
+        returnComment(c);
+        break;
 
-    case d.classList.contains("close"):
-      modCloser(d);
-      break;
+      case c.hasClass("ats"):
+        addToSelector(c);
+        break;
+      case c.hasClass("atd"):
+        addToDate(c);
+        break;
 
-    case c.hasClass("ac"):
-      openContact(c);
-      break;
+      case c.hasClass("btt") || !!c.closest(".btt")[0]:
+        backToTop();
+        break;
 
-    case c.hasClass("tc"):
-      returnComment(c);
-      break;
+      case c.hasClass("bts"):
+        bookThisService(c);
+        break;
 
-    case c.hasClass("ats"):
-      addToSelector(c);
-      break;
-    case c.hasClass("atd"):
-      addToDate(c);
-      break;
+      case d.classList.contains("hamburger"):
+        openHamburger(d);
+        break;
 
-    case c.hasClass('btt') || !!c.closest('.btt')[0]:
-      backToTop();
-      break;
+      default:
+        if (clickCount > 1) {
+          break;
+        }
+        c = c.parent();
+        clickSwitch();
+    }
+  };
 
-    case d.classList.contains("hamburger"):
-      openHamburger(d);
-      break;
-
-    default:
-      break;
-  }
+  clickSwitch();
 });
 
 const hireHeadWidth = $(".hire-head").innerWidth();
@@ -203,53 +299,3 @@ $(".hire-head")[0]?.style.setProperty(
   "--hire-head-width",
   `${hireHeadWidth}px`
 );
-
-/////////////////////////////////////////////
-////  ICONS MANIPULATIONS
-function setIcons() {
-  !localStorage.icons &&
-    fetch(
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.2.0/tabler-nodes-outline.json",
-      { priority: "high" }
-    )
-      .then((outJsonUrl) => outJsonUrl.json())
-      .then((outJsonUrl) =>
-        localStorage.setItem("icons", JSON.stringify(outJsonUrl))
-      )
-      .then(doIt);
-
-  function doIt() {
-    let allIconsObject = JSON.parse(localStorage.getItem("icons"));
-    $("[icon]").each((i, ele) => {
-      let svgName = $(ele).attr("icon");
-
-      let svgAttrs = $(ele)[0].attributes;
-      let svgHeader = `
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-        ></svg>`;
-
-      svgHeader = $(svgHeader);
-      Array.from(svgAttrs).forEach((each) => {
-        svgHeader.attr(each.name, each.value);
-      });
-      $(ele).replaceWith(svgHeader);
-
-      allIconsObject[svgName].forEach((each) => {
-        let path = `<path d="${each[1].d}"/>`;
-        $("svg")[i].insertAdjacentHTML("afterbegin", path);
-      });
-    });
-  }
-
-  !!localStorage.icons && doIt();
-}
-setIcons();
-/* ...........................................*/

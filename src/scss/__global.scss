@@ -2,27 +2,27 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'laila', Arial, Helvetica, sans-serif;
+  font-family: "laila", Arial, Helvetica, sans-serif;
   transition: all 200ms ease-in-out;
 }
 
-body{
+body {
   --turquoise: #02e6e7;
   --blue: #00507d;
 }
 
-li{
+li {
   list-style-type: none;
 }
 
-:where(span){
+:where(span) {
   color: #555;
 }
 :where(h1, h2, h3) {
   color: #2f2f2f;
 }
 
-:where(button){
+:where(button) {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -34,9 +34,8 @@ li{
   transition: all 200ms ease-in-out;
   // animation-duration:  ;
 
-  &:hover{
+  &:hover {
     // filter: saturate(290%) brightness(120%);
     filter: hue-rotate(380deg);
   }
 }
-

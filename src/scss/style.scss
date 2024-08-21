@@ -84,25 +84,32 @@ body {
 
 svg {
   display: block;
-  background-color: #6664;
   border-radius: var(--rad-small);
   animation: svg-pulse-load 400ms ease-in-out infinite alternate;
-  max-width: 2.3rem;
-  max-height: 2.3rem;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-svg[width] {
-  background-color: unset;
-  animation: none;
+svg[viewBox] {
+  animation: svg-pulse-load 100ms ease-in 1;
   max-width: unset;
   max-height: unset;
 }
 
 @keyframes svg-pulse-load {
+  from {
+    background-color: #6664;
+  }
   to {
     background-color: #5552;
   }
 }
+
 
 header {
   margin-top: 1rem;
@@ -672,6 +679,7 @@ footer {
     }
 
     .other-instructions {
+
       textarea {
         width: 100%;
         height: 4rem;

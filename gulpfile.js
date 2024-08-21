@@ -15,6 +15,10 @@ export function defaultTask(cb) {
   cb();
 }
 
+export function doNotin() {
+  return "javascript";
+}
+
 export function css() {
   return src('./src/scss/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
@@ -72,7 +76,7 @@ function watchFiles() {
   gulp.watch(['./src/pug/*.pug', './src/pug/*/*.pug'], html);
   gulp.watch('./src/images/**//*', images);
   // gulp.watch('./d/opt-images/**/*', placeImages);
-  gulp.watch('./d/javascript/*', js)
+  gulp.watch('./d/javascript/*', doNotin)
 }
 
 export const watch = watchFiles

@@ -14,10 +14,11 @@ block sections
         - const services = ['wedding', "fashion", "landscape", "studio", "outdoor", "products"];
 
           each service in services
-            div(modal="book-session").bts
-              .service-image(modal="book-session").bts
-                img.bts(src=`opt-images/stock/services_${service}.webp` alt=service, modal="book-session")
+            div(modal="book-session", dp)
+              .service-image(modal="book-session", dp)
+                img.bts(src=`opt-images/stock/services_${service}.webp` alt=service, modal="book-session" dp)
                 h4= service
+                button.bts book this
 
 
       section.expertise

@@ -89,18 +89,84 @@ section {
 
 #gallery {
   grid-column: span 2;
+  align-self: flex-start;
+  max-height: 100%;
+  max-width: 800px;
+  width: 100%;
+
+  svg {
+    cursor: pointer;
+  }
 
   .recent-shots {
-    height: var(--kwasiampanin);
+    height: calc(var(--active-bottom) * 1.6);
+    width: 100%;
+  }
+
+  .all-other-overlay {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    // margin: 0 1rem ;
+    // padding: 5rem 0;
+    
+    &.js {
+      align-items: start;
+      padding: 1rem;
+      background-color: #fff;
+      height: 100svh;
+      width: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      overflow-y: scroll;
+      z-index: 9;
+      
+      .all-other-photos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        // overflow-y: scroll;
+
+        img {
+          width: 100%;
+          max-width: unset;
+          box-shadow: 0 9px 10px -6px #9999;
+
+          &.js {
+            transform: none;
+          }
+        }
+      }
+
+
+    }
+
+    svg {
+      color: black;
+      position: absolute;
+
+      &:hover {
+        transform: scale(115%);
+      }
+    }
+
+    [icon="chevron-left"] {
+      left: -1.5rem;
+    }
+    [icon="chevron-right"] {
+      right: -1.5rem;
+    }
   }
 
   .all-other-photos {
     display: flex;
-    flex-wrap: wrap;
-    align-content: flex-end;
-    justify-content: center;
+    overflow-x: auto;
+    padding: 1rem 0;
+    width: 100%;
     gap: 0.4rem;
-    height: 19rem;
+    scrollbar-width: none;
 
     img {
       max-width: 4rem;
@@ -108,9 +174,10 @@ section {
     }
 
     img.js {
-      border: solid 3px #222;
+      // border: solid 3px #222;
       box-shadow: 1px 2px 5px #333;
-      transform: scale(110%);
+      transform: scale(110%, 120%);
+      // z-index: 9;
       padding: 0;
     }
   }
@@ -122,6 +189,79 @@ section {
         border-radius: 0;
       }
     }
+  }
+}
+
+#gallery:has(.recent-shots #full-gallery) {
+  // height: calc(var(--active-bottom) * 0.5);
+  height: 100dvh;
+  z-index: 999;
+}
+
+#full-gallery {
+  position: fixed;
+  background-color: #eeef;
+  inset: 0;
+  padding: 1.5rem;
+
+  .recent-head {
+
+    [icon="arrows-diagonal"] {
+      path:nth-child(2) {
+        transform: translate(43%, -43%);
+      }
+      path:nth-child(4) {
+        transform: translate(-43%, 43%);
+      }
+    }
+  }
+
+  .recent-photo {
+    height: var(--active-bottom);
+
+    .photo-carousel {
+      position: relative;
+
+      .left-unactive,
+      .right-unactive {
+        display: none;
+      }
+
+      .car-assets {
+        width: 100dvw;
+        top: 50%;
+        transform: translateY(-50%);
+
+        .est-wst {
+          width: 100%;
+          color: black;
+
+          svg {
+            stroke-width: 2.3;
+            // background-image: linear-gradient(90deg, #fff 90%, #fff0);
+            color: black;
+            width: 2.3rem;
+            height: 2.3rem;
+            fill: red;
+
+            path:nth-child(3) {
+              opacity: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .all-other-photos {
+    display: flex;
+    flex-wrap: nowrap;
+    // width: 90dvw;
+    // height: 80px;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    // aling
   }
 }
 
@@ -150,10 +290,10 @@ section {
 }
 
 .photo-carousel {
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100%;
   width: 100%;
   position: relative;
@@ -178,7 +318,7 @@ section {
       filter: grayscale(100) blur(4px);
     }
     img.js {
-      animation: car-img-in 100ms ease-in-out 1 alternate;
+      animation: car-img-in 250ms ease-in-out 1 alternate;
     }
   }
   .active {
@@ -186,7 +326,7 @@ section {
     perspective: 500px;
 
     img.js {
-      animation: active-car-in 100ms ease-in-out 1 alternate;
+      animation: active-car-in 250ms ease-in-out 1 alternate;
     }
   }
   .right-unactive {
@@ -198,60 +338,51 @@ section {
       filter: grayscale(100) blur(4px);
     }
     img.js {
-      animation: car-img-in 100ms ease-in-out 1 alternate;
+      animation: car-img-in 250ms ease-in-out 1 alternate;
     }
   }
 
   .car-assets {
     display: flex;
-    // justify-content: center;
+    position: absolute;
+    transform: translateY(calc(var(--active-bottom) - 8px));
+    justify-content: center;
+    // background-color: #44f;
     z-index: 1;
-    height: 80%;
     width: 100%;
 
     .est-wst {
       display: flex;
-      width: 100%;
-      justify-content: center;
+      width: 80%;
+      justify-content: space-between;
     }
 
     svg {
-      position: absolute;
       cursor: pointer;
-      color: #111;
-      // padding: 0 1rem;
-      background-color: #fff;
-      backdrop-filter: blur(1px);
-      // border: solid 1px #333;
+      color: #fff;
 
       &:hover,
       &:target {
-        color: #222;
         scale: 125%;
       }
     }
-    .east {
-      bottom: 0;
-    }
 
     ul {
-      display: grid;
+      display: flex;
       position: absolute;
       justify-content: center;
+      width: 65%;
+      left: 50%;
       top: 50%;
-      left: -1rem;
-      transform: translateY(-50%);
-      gap: 0.3rem;
+      transform: translate(-50%, -50%);
 
       li {
-        width: 0.3rem;
-        height: 1rem;
-        border-radius: 1rem;
-        background-color: #888;
+        height: 2px;
+        width: 100%;
+        background-color: #fff;
 
         &.active {
           background-color: #666;
-          height: 3rem;
         }
       }
     }
@@ -279,7 +410,7 @@ section {
   display: grid;
   flex-direction: column;
   grid-template-rows: 1fr auto;
-  gap: 1.7rem;
+  gap: 2.7rem 1rem;
 
   section {
     height: unset;
@@ -299,7 +430,7 @@ section {
       background-color: #fff;
       border-radius: var(--rad-medium);
       padding: 0.55rem 0.23rem 2rem 0.23rem;
-      box-shadow: 0 3px 5px -2px #3333;
+      // box-shadow: 0 3px 5px -2px #3333;
       margin-bottom: 0.3rem;
       aspect-ratio: 9/13;
       cursor: pointer;
@@ -311,12 +442,30 @@ section {
       }
     }
 
+    & > div {
+      display: grid;
+    }
+
     h2 {
       grid-column: span 3;
     }
     h4 {
-      font-weight: 400;
+      display: block;
+      font-family: "Courier New", Courier, monospace;
+      color: #666;
+      font-size: 0.8rem;
+      font-weight: 100;
       text-align: center;
+      align-self: flex-end;
+    }
+
+    button {
+      background-color: #{$turquoise}49;
+      box-shadow: 0px 1px 4px #{$blue}66;
+      justify-self: center;
+      margin-top: -1rem;
+      padding: 0.2rem 0.7rem;
+      color: $blue;
     }
 
     img {
@@ -496,7 +645,9 @@ section {
       font-weight: 600;
       font-size: 0.74rem;
 
-      span{color: #fff !important}
+      span {
+        color: #fff !important;
+      }
 
       svg {
         color: #fff;

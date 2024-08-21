@@ -10,10 +10,6 @@ $(window).on("load", function () {
     c.text() === "..." ? c.text(c.parent().next().text()) : c.text("...");
   }
 
-  function bookThisService(c) {
-    c = $(`#book-selector .${c.find("img").attr("alt") || c.attr("alt")}`);
-    addToSelector(c);
-  }
 
   function scrollReview(param) {
     let reviewWidth = $(".review").width();
@@ -42,10 +38,6 @@ $(window).on("load", function () {
 
       case c.hasClass("y-bso"):
         retractBookSelector();
-        break;
-
-      case c.hasClass("bts"):
-        bookThisService(c);
         break;
 
       case c.hasClass("east"):
