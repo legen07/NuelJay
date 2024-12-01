@@ -1,10 +1,11 @@
 import gulp, {src, dest, parallel, series} from 'gulp';
 
 import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
-import webp from 'gulp-webp'
+import webp from 'gulp-webp';
 
-import dartSass from 'sass';
+import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
+
 const sass = gulpSass(dartSass);
 
 import pug from 'gulp-pug';

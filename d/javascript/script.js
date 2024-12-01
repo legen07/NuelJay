@@ -2,51 +2,45 @@ document.querySelectorAll("*").forEach((element, index) => {
   element.getAnimations() > 0 && (element.style.animationPlayState = "paused");
 });
 
-
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // ! ICONS MANIPULATIONS
 
-// const setIcons = () => {
-  !localStorage.icons &&
-    fetch(
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.11.0/tabler-nodes-outline.json",
-      { priority: "high" }
+!localStorage.icons &&
+  fetch(
+    "https://cdn.jsdelivr.net/npm/@tabler/icons@3.11.0/tabler-nodes-outline.json",
+    { priority: "high" }
+  )
+    .then((outJsonUrl) => outJsonUrl.json())
+    .then((outJsonUrl) =>
+      localStorage.setItem("icons", JSON.stringify(outJsonUrl))
     )
-      .then((outJsonUrl) => outJsonUrl.json())
-      .then((outJsonUrl) =>
-        localStorage.setItem("icons", JSON.stringify(outJsonUrl))
-      )
-      .then(setIcons);
+    .then(setIcons);
 
-  export function setIcons() {
-    let allIconsObject = JSON.parse(localStorage.getItem("icons"));
+export function setIcons() {
+  let allIconsObject = JSON.parse(localStorage.getItem("icons"));
 
-    for (let i = 0; i <= [...$("[icon]")].length - 1; i++) {
-      if (!$($("[icon]")[i]).find("path")[0]) {
-        let notYetSvg = $("[icon]")[i];
+  for (let i = 0; i <= [...$("[icon]")].length - 1; i++) {
+    if (!$($("[icon]")[i]).find("path")[0]) {
+      let notYetSvg = $("[icon]")[i];
 
-        let svgName = $(notYetSvg).attr("icon");
+      let svgName = $(notYetSvg).attr("icon");
 
-        $(notYetSvg).attr({
-          xmlns: "http://www.w3.org/2000/svg",
-          viewBox: "0 0 24 24",
-        });
+      $(notYetSvg).attr({
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 24 24",
+      });
 
-        allIconsObject[svgName].forEach((each) => {
-          let path = `<path d="${each[1].d}" />`;
-          $("[icon]")[i].insertAdjacentHTML("afterbegin", path);
-        });
-      } else {
-        continue;
-      }
+      allIconsObject[svgName].forEach((each) => {
+        let path = `<path d="${each[1].d}" />`;
+        $("[icon]")[i].insertAdjacentHTML("afterbegin", path);
+      });
+    } else {
+      continue;
     }
   }
+}
 
-  !!localStorage.icons && setIcons();
-// }
-// setIcons();
-/* ...........................................*/
-
+!!localStorage.icons && setIcons();
 
 window.onload = document.querySelectorAll("*").forEach((element, index) => {
   element.getAnimations() > 0 && (element.style.animationPlayState = "running");
@@ -70,6 +64,8 @@ $("header nav li").each((i, each) => {
 toggleHamburger();
 
 function toggleHamburger() {
+  console.log("This is the hamburger function.")
+
   let activePage = $("header li.js").html();
 
   if (window.innerWidth < 870 && !$("header nav.js")[0]) {
@@ -92,6 +88,8 @@ function toggleHamburger() {
 $(window).on("resize", toggleHamburger);
 
 function openHamburger(d) {
+  console.log("This is open hamburger")
+
   d.tagName !== "button" && (d = $(d).closest("button"));
   $(d).toggleClass("js");
 
@@ -110,7 +108,6 @@ function openHamburger(d) {
 let headScrolled = false;
 
 $(".container").on("scroll", (e) => {
-
   if ($("header")[0].getBoundingClientRect().y < 10) {
     $("header").addClass("scrolled");
 
@@ -192,9 +189,7 @@ function toggleForm(c) {
   }
 }
 
-const bookSession = () => {
-
-};
+const bookSession = () => {};
 
 //////////////////////////////////////////////
 // Auto modal open and close
@@ -211,7 +206,7 @@ function modOpener(c) {
   }
 
   const modFunc = /^(\b\w+\b).*(\b\w+\b)/m.exec(modal);
-  let funcName = !!(modFunc)[1]
+  let funcName = !!modFunc[1]
     ? modFunc[1] + modFunc[2][0].toUpperCase() + modFunc[2].slice(1)
     : modal;
   try {
@@ -243,7 +238,7 @@ document.addEventListener("click", (e) => {
 
   let c = $(d);
   let clickCount = 0;
-  
+
   const clickSwitch = () => {
     clickCount += 1;
     switch (true) {
