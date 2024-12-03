@@ -18,26 +18,28 @@ document.querySelectorAll("*").forEach((element, index) => {
 
 export function setIcons() {
   let allIconsObject = JSON.parse(localStorage.getItem("icons"));
+  console.log(allIconsObject, localStorage.getItem("icons"));
 
-  for (let i = 0; i <= [...$("[icon]")].length - 1; i++) {
-    if (!$($("[icon]")[i]).find("path")[0]) {
-      let notYetSvg = $("[icon]")[i];
+  $("[icon]").each((i, each) => {
+    if (!$(each).find("path")[0]) {
+      console.log(each)
+      let notYetSvg = $(each);
+      
+      let svgName = notYetSvg.attr("icon");
 
-      let svgName = $(notYetSvg).attr("icon");
-
-      $(notYetSvg).attr({
+      notYetSvg.attr({
         xmlns: "http://www.w3.org/2000/svg",
         viewBox: "0 0 24 24",
       });
 
       allIconsObject[svgName].forEach((each) => {
-        let path = `<path d="${each[1].d}" />`;
-        $("[icon]")[i].insertAdjacentHTML("afterbegin", path);
+
+        notYetSvg[0].insertAdjacentHTML("afterbegin", `<path d="${each[1].d}" />`);
       });
     } else {
-      continue;
+      return;
     }
-  }
+  })
 }
 
 !!localStorage.icons && setIcons();

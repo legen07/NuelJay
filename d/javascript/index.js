@@ -42,11 +42,11 @@ let imagesList = $(".car-assets ul");
 let j = 0;
 
 let proImgs = [
-  "nueljay_photography_10.webp",
-  "nueljay_photography_11.webp",
-  "nueljay_photography_13.webp",
-  "nueljay_photography_20.webp",
-  "nueljay_photography_16.webp",
+  "nueljay_photography_10_lri.webp",
+  "nueljay_photography_11_lri.webp",
+  "nueljay_photography_13_lri.webp",
+  "nueljay_photography_20_lri.webp",
+  "nueljay_photography_16_lri.webp",
 ];
 
 function carouselPlace(prev_next) {

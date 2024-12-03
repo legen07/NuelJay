@@ -83,7 +83,6 @@ body {
 }
 
 svg {
-  display: block;
   border-radius: var(--rad-small);
   width: 24px;
   height: 24px;
@@ -100,6 +99,7 @@ svg:not([viewBox]) {
 
 svg[viewBox] {
   animation: none !important;
+  -webkit-animation: none !important;
   max-width: unset;
   max-height: unset;
 }

@@ -127,6 +127,7 @@ section {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+        width: 100%;
         // overflow-y: scroll;
 
         img {
@@ -134,7 +135,7 @@ section {
           max-width: unset;
           box-shadow: 0 9px 10px -6px #9999;
 
-          &.js {
+          &.js {  
             transform: none;
           }
         }
