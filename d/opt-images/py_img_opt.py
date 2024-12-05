@@ -2,6 +2,7 @@ from PIL import Image;
 import os
 import glob
 import re
+import math
 
 
 dir_path = "./**/*.webp"
@@ -16,7 +17,12 @@ for image_file in globs :
 
   image = Image.open(image_file)
 
-  opt_img = image.resize((10, 14), Image.LANCZOS)
+  width, height = image.size
+
+  width = (width * .01) + 1
+  height = (height * .01) + 1
+
+  opt_img = image.resize((math.floor(width), math.floor(height)), Image.LANCZOS)
 
   print(re.sub(".webp","_lri.webp", image_file), 'this is the image OF The Fucking')
   opt_img.save(re.sub(".webp","_lri.webp", image_file), quality=10)

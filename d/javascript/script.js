@@ -11,38 +11,36 @@ document.querySelectorAll("*").forEach((element, index) => {
     { priority: "high" }
   )
     .then((outJsonUrl) => outJsonUrl.json())
-    .then((outJsonUrl) =>
-      localStorage.setItem("icons", JSON.stringify(outJsonUrl))
-    )
-    .then(setIcons);
+    .then((outJsonUrl) => {
+      localStorage.setItem("icons", JSON.stringify(outJsonUrl));
+      setIcons();
+    });
 
 export function setIcons() {
   let allIconsObject = JSON.parse(localStorage.getItem("icons"));
-  console.log(allIconsObject, localStorage.getItem("icons"));
 
-  $("[icon]").each((i, each) => {
-    if (!$(each).find("path")[0]) {
-      console.log(each)
-      let notYetSvg = $(each);
-      
-      let svgName = notYetSvg.attr("icon");
+  $("[icon]:not([viewBox])").each((i, each) => {
+    let notYetSvg = $(each);
 
-      notYetSvg.attr({
-        xmlns: "http://www.w3.org/2000/svg",
-        viewBox: "0 0 24 24",
-      });
+    let svgName = notYetSvg.attr("icon");
 
-      allIconsObject[svgName].forEach((each) => {
+    notYetSvg.attr({
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 24 24",
+    });
 
-        notYetSvg[0].insertAdjacentHTML("afterbegin", `<path d="${each[1].d}" />`);
-      });
-    } else {
-      return;
-    }
-  })
+    notYetSvg.css("animation", "none");
+
+    allIconsObject[svgName].forEach((each) => {
+      notYetSvg[0].insertAdjacentHTML(
+        "afterbegin",
+        `<path d="${each[1].d}" />`
+      );
+    });
+  });
 }
 
-!!localStorage.icons && setIcons();
+// !!localStorage.icons && setIcons();
 
 window.onload = document.querySelectorAll("*").forEach((element, index) => {
   element.getAnimations() > 0 && (element.style.animationPlayState = "running");
@@ -66,8 +64,6 @@ $("header nav li").each((i, each) => {
 toggleHamburger();
 
 function toggleHamburger() {
-  console.log("This is the hamburger function.")
-
   let activePage = $("header li.js").html();
 
   if (window.innerWidth < 870 && !$("header nav.js")[0]) {
@@ -84,14 +80,12 @@ function toggleHamburger() {
     $("header > li, .hamburger").remove();
   }
 
-  setIcons();
+  !!localStorage.icons && setIcons();
 }
 
 $(window).on("resize", toggleHamburger);
 
 function openHamburger(d) {
-  console.log("This is open hamburger")
-
   d.tagName !== "button" && (d = $(d).closest("button"));
   $(d).toggleClass("js");
 
@@ -110,6 +104,7 @@ function openHamburger(d) {
 let headScrolled = false;
 
 $(".container").on("scroll", (e) => {
+
   if ($("header")[0].getBoundingClientRect().y < 10) {
     $("header").addClass("scrolled");
 
@@ -191,8 +186,6 @@ function toggleForm(c) {
   }
 }
 
-const bookSession = () => {};
-
 //////////////////////////////////////////////
 // Auto modal open and close
 let modal;
@@ -202,7 +195,6 @@ function modOpener(c) {
   $(`#${modal}`)[0].classList.add("js");
 
   // Same element to toggle if modal also has dp at attribute  property.
-
   if (c.is("[dp]")) {
     toggleForm(c);
   }
@@ -296,3 +288,34 @@ $(".hire-head")[0]?.style.setProperty(
   "--hire-head-width",
   `${hireHeadWidth}px`
 );
+
+console.log("this is the script code")
+
+export async function ascImages() {
+  const lriImages = $("img[src*='lri']");
+
+  console.log(lriImages)
+
+  for (let each of lriImages) {
+    const imgSrc = $(each).attr("src").replace("_lri.webp", ".webp");
+    
+    try {
+      await loadImg(imgSrc);
+      each.setAttribute("src", imgSrc);
+    } catch (error) {
+      console.error("Error loading image");
+    }
+  }
+}
+
+const loadImg = (src) =>
+  new Promise((resolve, reject) => {
+    const image = new Image();
+    image.src = src;
+    image.onload = () => {
+      resolve(image);
+    };
+    image.onerror = (error) => {
+      reject(error);
+    };
+  });

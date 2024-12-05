@@ -110,7 +110,7 @@ section {
     position: relative;
     // margin: 0 1rem ;
     // padding: 5rem 0;
-    
+
     &.js {
       align-items: start;
       padding: 1rem;
@@ -122,7 +122,7 @@ section {
       top: 0;
       overflow-y: scroll;
       z-index: 9;
-      
+
       .all-other-photos {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -135,13 +135,11 @@ section {
           max-width: unset;
           box-shadow: 0 9px 10px -6px #9999;
 
-          &.js {  
+          &.js {
             transform: none;
           }
         }
       }
-
-
     }
 
     svg {
@@ -197,6 +195,7 @@ section {
   // height: calc(var(--active-bottom) * 0.5);
   height: 100dvh;
   z-index: 999;
+
 }
 
 #full-gallery {
@@ -204,9 +203,21 @@ section {
   background-color: #eeef;
   inset: 0;
   padding: 1.5rem;
+  
+  .close-full-gallery {
+    background-color: #444;
+    padding: .3rem .8rem;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    z-index: 999;
+    border-radius: .4rem;
+    display: inline-block;
+    color: white;
+    cursor: pointer;
+  }
 
   .recent-head {
-
     [icon="arrows-diagonal"] {
       path:nth-child(2) {
         transform: translate(43%, -43%);
@@ -290,6 +301,26 @@ section {
   }
 }
 
+div:has(> img[src*="lri"]) {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    border-left: solid 1px white;
+    border-bottom: solid 1px #0000;
+    border-top: solid 1px #0000;
+    animation: loading-image 500ms linear infinite;
+    filter: brightness(100%);
+    mix-blend-mode: difference;
+  }
+}
+
 .photo-carousel {
   margin-top: 3rem;
   display: flex;
@@ -300,14 +331,21 @@ section {
   position: relative;
 
   > * {
-    position: absolute;
+    position: absolute !important;
     inset: 1;
+    width: 100%;
   }
 
   img {
     width: 100%;
     max-width: 660px;
     min-width: 100%;
+  }
+
+  @keyframes loading-image {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .left-unactive {

@@ -2,12 +2,24 @@
 @import "__global.scss";
 @import "__pages.scss";
 
+html {
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 body {
   background-color: #{$turquoise}11;
-  /*overflow: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overflow: hidden;
   height: 100lvh;
   position: relative;
-  background: linear-gradient(45deg, #{$blue}33, #{$turquoise}33);
+  /*background: linear-gradient(45deg, #{$blue}33, #{$turquoise}33);
 
   &::before {
     content: "";
@@ -44,6 +56,10 @@ body {
     filter: blur(1px);
     opacity: 0.03;
   } */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 @keyframes body-sand {
   to {
@@ -92,24 +108,21 @@ svg {
   stroke-linecap: round;
   animation: svg-pulse-load 400ms ease-in-out infinite alternate;
   stroke-linejoin: round;
-}
-svg:not([viewBox]) {
-  // background-color: red !important;
+  background-color: #6660;
 }
 
 svg[viewBox] {
+  display: block !important;
   animation: none !important;
+  background-color: #0000;
   -webkit-animation: none !important;
   max-width: unset;
   max-height: unset;
 }
 
 @keyframes svg-pulse-load {
-  from {
-    background-color: #6664;
-  }
   to {
-    background-color: #5552;
+    background-color: #6664;
   }
 }
 
@@ -209,7 +222,6 @@ header {
   .head-logo {
     img {
       height: 3.4rem;
-      // display: grid;
     }
   }
 

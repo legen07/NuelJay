@@ -1,3 +1,5 @@
+import { ascImages } from "./script.js";
+
 document.addEventListener("click", function (e) {
   let d = e.target;
   d.tagName === "path" && (d = $(d).parent("svg")[0]);
@@ -51,10 +53,10 @@ let proImgs = [
 
 function carouselPlace(prev_next) {
 
-  $(".photo-carousel div.active")[0].scrollIntoView({
+  /*$(".photo-carousel div.active")[0].scrollIntoView({
     behavior: "smooth",
     block: "center",
-  });
+  });*/
 
 
   let poppedImg = prev_next === "next" ? proImgs.shift() : proImgs.pop();
@@ -75,6 +77,8 @@ function carouselPlace(prev_next) {
     (prev_next === "prev" ? j - 1 : j + 1) %
     (prev_next === "prev" ? -proImgs.length : proImgs.length);
   $(".car-assets ul li")[j].classList.add("active");
+
+  ascImages()
 }
 for (let k = 0; k < proImgs.length; k++) {
   let li = document.createElement("li");

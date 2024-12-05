@@ -1,10 +1,12 @@
 import { setIcons } from "./script.js";
+import { ascImages } from "./script.js";
 
 let allOther = false;
 
 $(window).on("load", () => {
   function fullGallery(c) {
-    if (c.is(".js")) {
+    console.log(c)
+    if (c?.is(".js")) {
       c.removeClass("js");
 
       $("#full-gallery > *:first").unwrap();
@@ -13,7 +15,7 @@ $(window).on("load", () => {
     }
     c.addClass("js");
     $(".recent-shots").wrapInner("<div id='full-gallery'></div>");
-    // $('#gallery')[0].mozRequestFullScreen()
+
   }
 
   function gridOthers(c) {
@@ -102,7 +104,7 @@ $(window).on("load", () => {
 
     let slicedImgs = proImgs.slice(0, 3);
     for (let i = 0; i < 3; i++) {
-      carSpots[i].innerHTML = `<img src="opt-images/gallery/${slicedImgs[i]}">`;
+      carSpots[i].innerHTML = `<img src="opt-images/gallery/${slicedImgs[i]}"/>`;
       carSpots[i].firstElementChild.classList.toggle("js");
     }
     $($(".car-assets ul li")[j]).removeClass("active");
@@ -115,10 +117,11 @@ $(window).on("load", () => {
 
     $(`.all-other-photos [data-js-imgname="${proImgs[1]}"]`).addClass("js");
 
-    console.log($(".all-other-photos img.js")[0].getBoundingClientRect().left);
 
     // $('.all-other-photos').animate({scrollLeft : $('.all-other-photos img.js')[0].getBoundingClientRect().left}, 300)
     $('.all-other-photos img.js')[0].scrollIntoView({behavior: 'smooth', block : 'center'})
+
+    ascImages();
   }
 
   /*        End or Carousel               */
@@ -131,7 +134,7 @@ $(window).on("load", () => {
 
     for (let i = 3; i <= 22; i++) {
       $(".all-other-photos").append(
-        `<img src="opt-images/gallery/nueljay_photography_${i}.webp" data-js-imgName="nueljay_photography_${i}.webp">`
+        `<img src="opt-images/gallery/nueljay_photography_${i}_lri.webp" data-js-imgName="nueljay_photography_${i}_lri.webp">`
       );
     }
 
@@ -139,7 +142,7 @@ $(window).on("load", () => {
     allImages.splice(allImages.length - 2, Infinity);
 
     allImages.forEach((each, i, all) => {
-      proImgs.unshift($(each).attr("src").replace("opt-images/gallery/", ""));
+      proImgs.unshift(($(each).attr("src").replace("opt-images/gallery/", "")));
       $(".car-assets ul").css("display", "none");
     });
 
@@ -177,7 +180,6 @@ function scrollOthers(c) {
 }
 function looseOtherScrollChevrons() {
   if (allOtherPosition < 5) {
-    console.log("scroling to yella", allOtherPosition);
     $('.scroll-others[icon="chevron-left"]').fadeOut();
   } else {
     $('.scroll-others[icon="chevron-left"]').fadeIn();
