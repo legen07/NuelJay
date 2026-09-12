@@ -1,5 +1,33 @@
 {
   "type": "module",
+  "name": "nueljay",
+  "version": "1.0.0",
+  "description": "Nueljay Photography — A creative studio capturing timeless moments through art and fashion. We curate a unique fusion of storytelling and visual craft, delivering imagery that transcends the ordinary.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "dev": "gulp watch",
+    "build": "gulp",
+    "test": "gulp"
+  },
+  "keywords": [
+    "photography",
+    "portfolio",
+    "art",
+    "fashion",
+    "pug",
+    "sass",
+    "gulp",
+    "website",
+    "creative",
+    "gallery"
+  ],
+  "author": "Joe Legen",
+  "license": "MIT",
+  "homepage": "https://github.com/legen07/NuelJay",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:legen07/NuelJay.git"
+  },
   "dependencies": {
     "gulp-cli": "^3.0.0",
     "gulp-debug": "^5.0.1",
@@ -14,20 +42,12 @@
     "squashify": "^1.1.2",
     "uuid": "^9.0.1"
   },
-  "name": "nueljay",
-  "version": "1.0.0",
-  "description": "Nueljay Photography is a company which captures timeless moments that tell stories through the lens while curating a unique fusion of art and fashion.",
-  "main": "gulpfile.js",
-  "scripts": {
-    "test": "gulp watch"
-  },
-  "author": "Joe Legen",
-  "license": "MIT",
   "devDependencies": {
     "gulp": "^5.0.0",
     "gulp-imagemin": "^9.1.0",
     "gulp-webp": "^5.0.0",
     "imagemin": "^9.0.0",
     "imagemin-webp": "^8.0.0"
-  }
+  },
+  "packageManager": "bun@1.4.0"
 }
