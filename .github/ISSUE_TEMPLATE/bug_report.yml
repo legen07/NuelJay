@@ -1,0 +1,41 @@
+name: Bug Report
+description: Report a bug in NuelJay
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the details below.
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: What browser, OS, and Node/Bun version are you using?
+      placeholder: e.g., Chrome 120, macOS 14.1, Bun 1.4.0
+    validations:
+      - required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of the bug.
+      placeholder: What happened? What should have happened?
+    validations:
+      - required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: List the steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Observe error
+    validations:
+      - required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Screenshots
+      description: Any relevant logs or screenshots (optional).

@@ -1,0 +1,25 @@
+# NuelJay Topics
+
+Add the following topics to your GitHub repository at:
+**https://github.com/legen07/NuelJay/settings/main**
+
+```
+photography, portfolio, web-development, pug, sass, gulp, creative-studio, photography-portfolio, fashion, responsive-design, javascript, builttools
+```
+
+### Recommended Topic Tags
+
+| Topic | Why |
+|-------|-----|
+| `photography` | Core subject of the project |
+| `portfolio` | It's a photography portfolio site |
+| `web-development` | Web-based project |
+| `pug` | HTML templating engine used |
+| `sass` | CSS preprocessor used |
+| `gulp` | Build system |
+| `creative-studio` | Describes the brand type |
+| `photography-portfolio` | Specific niche |
+| `fashion` | One of the key categories |
+| `responsive-design` | Mobile-friendly site |
+| `javascript` | Client-side logic |
+| `build-tools` | Gulp-based pipeline |
