@@ -13,7 +13,7 @@
 
 NuelJay is a photography portfolio website showcasing a creative studio's work across fashion, products, weddings, and outdoor shoots. Built with modern web technologies, it delivers a performant and visually striking experience.
 
-- **Live URL:** [https://github.com/legen07/NuelJay](https://github.com/legen07/NuelJay)
+- **Live URL:** [https://nueljay.pages.dev](https://nueljay.pages.dev)
 - **Version:** 1.0.0
 - **License:** MIT
 
